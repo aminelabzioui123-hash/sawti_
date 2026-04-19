@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>صوتي AI — حوّل صوتك إلى نص</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+/* ════════════════════════════════════════
+   Design Tokens
+════════════════════════════════════════ */
+:root{
+  --ink:    #0b0d13;
+  --ink1:   #12151f;
+  --ink2:   #181c2c;
+  --ink3:   #1f2438;
+  --line:   #242a3e;
+  --line2:  #2e364f;
+  --gold:   #e8a020;
+  --goldL:  #f2b535;
+  --goldD:  #c58010;
+  --goldBg: rgba(232,160,32,.1);
+  --goldRg: rgba(232,160,32,.06);
+  --cream:  #f5efe0;
+  --creamD: #c8bfa0;
+  --sky:    #4a90d9;
+  --ok:     #2eb87a;
+  --err:    #e05252;
+  --txt:    #dde3f4;
+  --txt2:   #8897ba;
+  --txt3:   #505f80;
+  --r:      12px;
+  --rL:     20px;
+  --rXL:    28px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Cairo',sans-serif;background:var(--ink);color:var(--txt);min-height:100vh;direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ════════════════════════════════════════
+   Noise + ambient background
+════════════════════════════════════════ */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(232,160,32,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 100% 60%, rgba(74,144,217,.07) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 0% 80%, rgba(46,184,122,.05) 0%, transparent 55%);
+}
+
+/* ════════════════════════════════════════
+   Nav
+════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  display:flex;align-items:center;height:68px;padding:0 40px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  background:rgba(11,13,19,.75);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  transition:background .3s;
+}
+.nav-brand{
+  font-family:'Tajawal',sans-serif;font-size:24px;font-weight:900;
+  color:var(--gold);letter-spacing:-0.5px;margin-left:auto
+}
+.nav-brand b{color:var(--txt);font-weight:300}
+.nav-center{display:flex;align-items:center;gap:6px;margin:0 auto}
+.nav-link{
+  padding:7px 16px;border-radius:9px;font-size:14px;font-weight:600;
+  color:var(--txt2);cursor:pointer;transition:all .2s;text-decoration:none
+}
+.nav-link:hover{color:var(--txt);background:rgba(255,255,255,.05)}
+.nav-right{display:flex;align-items:center;gap:10px;margin-right:auto}
+.btn-ghost-sm{
+  padding:8px 20px;border-radius:10px;border:1px solid var(--line2);
+  background:transparent;color:var(--txt2);font-family:'Cairo',sans-serif;
+  font-size:14px;font-weight:600;cursor:pointer;transition:all .2s
+}
+.btn-ghost-sm:hover{border-color:var(--gold);color:var(--gold)}
+.btn-gold-sm{
+  padding:9px 22px;border-radius:10px;background:var(--gold);
+  color:#09090f;font-family:'Cairo',sans-serif;font-size:14px;font-weight:700;
+  cursor:pointer;border:none;transition:all .2s
+}
+.btn-gold-sm:hover{background:var(--goldL);transform:translateY(-1px);box-shadow:0 4px 20px rgba(232,160,32,.4)}
+
+/* ════════════════════════════════════════
+   Sections
+════════════════════════════════════════ */
+section{position:relative;z-index:1}
+.wrap{max-width:1140px;margin:0 auto;padding:0 40px}
+.wrap-sm{max-width:680px;margin:0 auto;padding:0 40px}
+.wrap-md{max-width:900px;margin:0 auto;padding:0 40px}
+
+/* ════════════════════════════════════════
+   Hero
+════════════════════════════════════════ */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:120px 40px 80px
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(232,160,32,.35);background:rgba(232,160,32,.07);
+  padding:7px 18px;border-radius:99px;
+  font-size:13px;font-weight:700;color:var(--gold);
+  margin-bottom:32px;
+  animation:fadeUp .7s ease both
+}
+.hero-eyebrow-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--ok);
+  box-shadow:0 0 8px var(--ok);animation:pulse 2s infinite
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+
+.hero-title{
+  font-family:'Tajawal',sans-serif;
+  font-size:clamp(46px,8vw,90px);font-weight:900;
+  line-height:1.05;letter-spacing:-2px;
+  margin-bottom:24px;
+  animation:fadeUp .7s .1s ease both
+}
+.hero-title .line1{display:block;color:var(--txt)}
+.hero-title .line2{
+  display:block;
+  background:linear-gradient(120deg,var(--gold) 0%,var(--goldL) 40%,#ffd27a 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+}
+.hero-desc{
+  font-size:clamp(16px,2vw,20px);color:var(--txt2);
+  max-width:560px;line-height:1.75;margin-bottom:44px;
+  animation:fadeUp .7s .2s ease both
+}
+.hero-cta{
+  display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+  margin-bottom:72px;animation:fadeUp .7s .3s ease both
+}
+.btn-gold{
+  padding:16px 38px;border-radius:14px;background:var(--gold);
+  color:#09090f;font-family:'Cairo',sans-serif;font-size:17px;font-weight:800;
+  cursor:pointer;border:none;transition:all .25s;position:relative;overflow:hidden
+}
+.btn-gold::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.2) 0%,transparent 55%)
+}
+.btn-gold:hover{background:var(--goldL);transform:translateY(-2px);box-shadow:0 10px 36px rgba(232,160,32,.45)}
+.btn-outline{
+  padding:16px 32px;border-radius:14px;background:transparent;
+  border:1px solid var(--line2);color:var(--txt2);
+  font-family:'Cairo',sans-serif;font-size:17px;font-weight:700;cursor:pointer;transition:all .25s
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);background:var(--goldRg)}
+
+/* Hero stats */
+.hero-stats{
+  display:flex;gap:0;
+  background:var(--ink1);border:1px solid var(--line);
+  border-radius:var(--rXL);overflow:hidden;
+  animation:fadeUp .7s .4s ease both
+}
+.h-stat{
+  padding:24px 40px;text-align:center;flex:1;
+  border-left:1px solid var(--line);position:relative
+}
+.h-stat:last-child{border-left:none}
+.h-stat-val{
+  font-family:'Tajawal',sans-serif;font-size:36px;font-weight:900;
+  color:var(--gold);line-height:1;margin-bottom:6px
+}
+.h-stat-lbl{font-size:13px;color:var(--txt2);font-weight:500}
+
+/* ════════════════════════════════════════
+   Logos / Trust bar
+════════════════════════════════════════ */
+#trust{padding:40px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust-txt{text-align:center;font-size:13px;color:var(--txt3);font-weight:600;letter-spacing:.5px;margin-bottom:28px;text-transform:uppercase}
+.logos-row{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+.logo-pill{
+  padding:10px 24px;border-radius:10px;border:1px solid var(--line);
+  color:var(--txt3);font-size:15px;font-weight:700;
+  background:rgba(255,255,255,.02)
+}
+
+/* ════════════════════════════════════════
+   Features
+════════════════════════════════════════ */
+#features{padding:120px 0}
+.section-label{
+  display:inline-block;font-size:12px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:var(--gold);margin-bottom:16px
+}
+.section-title{
+  font-family:'Tajawal',sans-serif;font-size:clamp(28px,4vw,48px);
+  font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:14px
+}
+.section-sub{font-size:17px;color:var(--txt2);line-height:1.7;max-width:500px}
+
+.feats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--rXL);overflow:hidden;margin-top:72px}
+.feat{
+  background:var(--ink1);padding:36px 32px;
+  transition:background .25s
+}
+.feat:hover{background:var(--ink2)}
+.feat-icon{
+  width:48px;height:48px;border-radius:14px;
+  background:var(--goldBg);border:1px solid rgba(232,160,32,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:20px
+}
+.feat-title{font-size:18px;font-weight:700;margin-bottom:8px}
+.feat-desc{font-size:14px;color:var(--txt2);line-height:1.75}
+
+/* ════════════════════════════════════════
+   How it works
+════════════════════════════════════════ */
+#how{padding:100px 0;background:var(--ink1);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:64px;position:relative}
+.steps::before{
+  content:'';position:absolute;top:32px;right:16.67%;left:16.67%;
+  height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  z-index:0
+}
+.step{text-align:center;position:relative;z-index:1}
+.step-num{
+  width:64px;height:64px;border-radius:50%;
+  background:var(--ink);border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Tajawal',sans-serif;font-size:26px;font-weight:900;
+  color:var(--gold);margin:0 auto 24px;
+  box-shadow:0 0 28px rgba(232,160,32,.25)
+}
+.step-title{font-size:19px;font-weight:700;margin-bottom:10px}
+.step-desc{font-size:14px;color:var(--txt2);line-height:1.75}
+
+/* ════════════════════════════════════════
+   PRICING  (the main section)
+════════════════════════════════════════ */
+#pricing{padding:120px 0}
+
+/* Toggle */
+.billing-toggle{
+  display:inline-flex;background:var(--ink1);border:1px solid var(--line);
+  border-radius:14px;padding:5px;gap:4px;margin-bottom:64px
+}
+.btog{
+  padding:10px 28px;border-radius:10px;font-family:'Cairo',sans-serif;
+  font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;
+  background:transparent;border:none;color:var(--txt2)
+}
+.btog.on{background:var(--gold);color:#09090f}
+.save-badge{
+  display:inline-block;background:rgba(46,184,122,.15);
+  border:1px solid rgba(46,184,122,.3);color:var(--ok);
+  font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;margin-right:6px
+}
+
+/* Plan grid */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:64px;align-items:start}
+
+.plan{
+  background:var(--ink1);border:1px solid var(--line);
+  border-radius:var(--rXL);padding:36px 32px;
+  position:relative;transition:border-color .25s,transform .25s
+}
+.plan:hover{transform:translateY(-4px)}
+.plan.featured{
+  border-color:var(--gold);
+  background:linear-gradient(160deg,rgba(232,160,32,.09) 0%,var(--ink1) 50%);
+  transform:translateY(-8px)
+}
+.plan.featured:hover{transform:translateY(-12px)}
+
+.plan-crown{
+  position:absolute;top:-14px;right:50%;transform:translateX(50%);
+  background:var(--gold);color:#09090f;
+  font-size:12px;font-weight:800;padding:5px 18px;border-radius:99px;
+  white-space:nowrap;letter-spacing:.3px
+}
+
+.plan-name{font-size:15px;font-weight:700;color:var(--txt2);margin-bottom:6px}
+.plan-tagline{font-size:13px;color:var(--txt3);margin-bottom:28px;min-height:36px}
+
+.plan-price{display:flex;align-items:flex-end;gap:4px;margin-bottom:6px}
+.plan-amt{
+  font-family:'Tajawal',sans-serif;font-size:54px;font-weight:900;
+  color:var(--txt);line-height:1
+}
+.plan-amt.colored{color:var(--gold)}
+.plan-currency{font-size:22px;font-weight:700;color:var(--txt2);align-self:flex-start;padding-top:10px}
+.plan-period{font-size:14px;color:var(--txt2);margin-bottom:2px}
+.plan-billed{font-size:12px;color:var(--txt3);margin-bottom:32px;min-height:18px}
+
+.plan-btn{
+  width:100%;padding:14px;border-radius:12px;
+  font-family:'Cairo',sans-serif;font-size:16px;font-weight:700;
+  cursor:pointer;transition:all .25s;border:none;margin-bottom:32px
+}
+.plan-btn-gold{background:var(--gold);color:#09090f}
+.plan-btn-gold:hover{background:var(--goldL);box-shadow:0 8px 28px rgba(232,160,32,.4)}
+.plan-btn-outline{
+  background:transparent;border:1px solid var(--line2);color:var(--txt2)
+}
+.plan-btn-outline:hover{border-color:var(--gold);color:var(--gold);background:var(--goldRg)}
+
+.plan-divider{height:1px;background:var(--line);margin-bottom:28px}
+.plan-features-title{font-size:12px;font-weight:700;color:var(--txt3);letter-spacing:.5px;text-transform:uppercase;margin-bottom:16px}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:13px}
+.plan-features li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:14px;color:var(--txt2)
+}
+.feat-check{
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700
+}
+.feat-check.ok{background:rgba(46,184,122,.15);color:var(--ok)}
+.feat-check.no{background:rgba(255,255,255,.05);color:var(--txt3)}
+.feat-check.star{background:rgba(232,160,32,.15);color:var(--gold)}
+
+/* Comparison table */
+.compare-wrap{
+  background:var(--ink1);border:1px solid var(--line);
+  border-radius:var(--rXL);overflow:hidden;margin-top:20px
+}
+.compare-header{
+  display:flex;padding:20px 32px;gap:0;
+  border-bottom:1px solid var(--line);background:var(--ink2)
+}
+.cmp-lbl{flex:2;font-size:13px;font-weight:700;color:var(--txt3)}
+.cmp-col{
+  flex:1;text-align:center;font-size:14px;font-weight:700;color:var(--txt2)
+}
+.cmp-col.gold-col{color:var(--gold)}
+
+.compare-row{display:flex;padding:15px 32px;gap:0;border-bottom:1px solid var(--line);transition:background .15s}
+.compare-row:last-child{border-bottom:none}
+.compare-row:hover{background:rgba(255,255,255,.02)}
+.compare-row .cmp-lbl{font-size:14px;color:var(--txt2);display:flex;align-items:center}
+.compare-row .cmp-col{display:flex;align-items:center;justify-content:center}
+.compare-section{
+  padding:12px 32px;background:var(--ink2);
+  font-size:12px;font-weight:700;color:var(--txt3);
+  letter-spacing:.5px;text-transform:uppercase;border-bottom:1px solid var(--line)
+}
+.chk{color:var(--ok);font-size:16px}
+.cross{color:var(--txt3);font-size:14px;opacity:.5}
+.cmp-txt{font-size:13px;font-weight:600}
+
+/* ════════════════════════════════════════
+   Testimonials
+════════════════════════════════════════ */
+#social{padding:100px 0;background:var(--ink1);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px}
+.testi{
+  background:var(--ink);border:1px solid var(--line);
+  border-radius:var(--rXL);padding:32px;
+  transition:border-color .2s
+}
+.testi:hover{border-color:rgba(232,160,32,.3)}
+.stars{color:var(--gold);font-size:14px;margin-bottom:16px;letter-spacing:2px}
+.testi-text{font-size:15px;color:var(--txt);line-height:1.8;margin-bottom:24px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.avatar{
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;flex-shrink:0
+}
+.av1{background:rgba(74,144,217,.2);color:var(--sky)}
+.av2{background:rgba(46,184,122,.2);color:var(--ok)}
+.av3{background:rgba(232,160,32,.2);color:var(--gold)}
+.testi-name{font-size:15px;font-weight:700}
+.testi-role{font-size:12px;color:var(--txt3);margin-top:2px}
+
+/* ════════════════════════════════════════
+   FAQ
+════════════════════════════════════════ */
+#faq{padding:100px 0}
+.faq-list{margin-top:56px;display:flex;flex-direction:column;gap:4px}
+.faq-item{
+  background:var(--ink1);border:1px solid var(--line);
+  border-radius:var(--r);overflow:hidden
+}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 28px;cursor:pointer;gap:16px;transition:background .2s
+}
+.faq-q:hover{background:var(--ink2)}
+.faq-q-txt{font-size:16px;font-weight:700}
+.faq-chevron{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--ink2);border:1px solid var(--line2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all .3s;font-size:12px;color:var(--txt2)
+}
+.faq-item.open .faq-chevron{background:var(--goldBg);border-color:rgba(232,160,32,.3);color:var(--gold);transform:rotate(45deg)}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease
+}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-inner{padding:0 28px 24px;font-size:15px;color:var(--txt2);line-height:1.8}
+
+/* ════════════════════════════════════════
+   Final CTA
+════════════════════════════════════════ */
+#cta{
+  padding:120px 0;text-align:center;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(232,160,32,.1) 0%,transparent 70%)
+}
+.cta-title{
+  font-family:'Tajawal',sans-serif;font-size:clamp(32px,5vw,64px);
+  font-weight:900;letter-spacing:-1px;margin-bottom:20px;line-height:1.1
+}
+.cta-title span{color:var(--gold)}
+.cta-sub{font-size:18px;color:var(--txt2);margin-bottom:44px}
+.cta-note{font-size:13px;color:var(--txt3);margin-top:18px}
+
+/* ════════════════════════════════════════
+   Footer
+════════════════════════════════════════ */
+footer{
+  border-top:1px solid var(--line);padding:60px 0 40px
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px
+}
+.footer-brand{font-family:'Tajawal',sans-serif;font-size:22px;font-weight:900;color:var(--gold);margin-bottom:14px}
+.footer-brand b{color:var(--txt);font-weight:300}
+.footer-desc{font-size:14px;color:var(--txt2);line-height:1.8;max-width:280px}
+.footer-col h4{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:16px}
+.footer-link{
+  display:block;font-size:14px;color:var(--txt2);margin-bottom:10px;
+  cursor:pointer;transition:color .2s;text-decoration:none
+}
+.footer-link:hover{color:var(--gold)}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:28px;border-top:1px solid var(--line);flex-wrap:wrap;gap:12px
+}
+.footer-copy{font-size:13px;color:var(--txt3)}
+.footer-badges{display:flex;gap:10px}
+.fbadge{
+  padding:5px 14px;border-radius:8px;border:1px solid var(--line);
+  font-size:11px;font-weight:700;color:var(--txt3)
+}
+
+/* ════════════════════════════════════════
+   Animations
+════════════════════════════════════════ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ════════════════════════════════════════
+   Responsive
+════════════════════════════════════════ */
+@media(max-width:960px){
+  nav{padding:0 20px}
+  .nav-center{display:none}
+  .wrap,.wrap-sm,.wrap-md{padding:0 20px}
+  .feats-grid{grid-template-columns:1fr 1fr}
+  .plans{grid-template-columns:1fr}
+  .plan.featured{transform:none}
+  .plan.featured:hover{transform:translateY(-4px)}
+  .steps{grid-template-columns:1fr;gap:32px}
+  .steps::before{display:none}
+  .testi-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .hero-stats{flex-direction:column;border-radius:var(--rL)}
+  .h-stat{border-left:none;border-bottom:1px solid var(--line);padding:20px}
+  .h-stat:last-child{border-bottom:none}
+  .compare-header,.compare-row{padding:14px 20px}
+}
+@media(max-width:640px){
+  #hero{padding:110px 20px 60px}
+  .feats-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .billing-toggle{width:100%;justify-content:center}
+  .hero-cta{flex-direction:column;align-items:center}
+  .btn-gold,.btn-outline{width:100%;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     Navigation
+══════════════════════════════════════ -->
+<nav>
+  <div class="nav-brand">صوتي<b>AI</b></div>
+  <div class="nav-center">
+    <a class="nav-link" href="#features">المميزات</a>
+    <a class="nav-link" href="#how">كيف يعمل</a>
+    <a class="nav-link" href="#pricing">الأسعار</a>
+    <a class="nav-link" href="#faq">الأسئلة الشائعة</a>
+  </div>
+  <div class="nav-right">
+    <button class="btn-ghost-sm">تسجيل الدخول</button>
+    <button class="btn-gold-sm">ابدأ مجاناً ←</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     Hero
+══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-eyebrow">
+    <span class="hero-eyebrow-dot"></span>
+    مدعوم بـ Whisper AI من OpenAI · Cloudflare Workers
+  </div>
+  <h1 class="hero-title">
+    <span class="line1">كلامك يستحق أن</span>
+    <span class="line2">يُكتب بدقة مثالية</span>
+  </h1>
+  <p class="hero-desc">
+    منصة SaaS متكاملة تحوّل ملفاتك الصوتية إلى نص احترافي بدقة تتجاوز 99% في ثوانٍ معدودة، مع دعم 40+ لغة وAPI جاهز للتكامل
+  </p>
+  <div class="hero-cta">
+    <button class="btn-gold" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">ابدأ مجاناً — بدون بطاقة بنكية ←</button>
+    <button class="btn-outline">شاهد العرض التوضيحي ▶</button>
+  </div>
+  <div class="hero-stats">
+    <div class="h-stat">
+      <div class="h-stat-val">99.2%</div>
+      <div class="h-stat-lbl">دقة التحويل</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-val">+40</div>
+      <div class="h-stat-lbl">لغة مدعومة</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-val">&lt;3ث</div>
+      <div class="h-stat-lbl">وقت الاستجابة</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-val">99.9%</div>
+      <div class="h-stat-lbl">ضمان التوفر</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     Trust bar
+══════════════════════════════════════ -->
+<section id="trust">
+  <div class="wrap">
+    <p class="trust-txt">تقنية موثوقة تعمل عليها</p>
+    <div class="logos-row">
+      <span class="logo-pill">🌐 Cloudflare Workers</span>
+      <span class="logo-pill">🤖 OpenAI Whisper</span>
+      <span class="logo-pill">🗄️ Cloudflare D1</span>
+      <span class="logo-pill">⚡ Edge Computing</span>
+      <span class="logo-pill">🔒 PBKDF2 Encryption</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     Features
+══════════════════════════════════════ -->
+<section id="features">
+  <div class="wrap">
+    <span class="section-label reveal">المميزات</span>
+    <h2 class="section-title reveal">كل ما تحتاجه في مكان واحد</h2>
+    <p class="section-sub reveal">صوتي AI ليس مجرد أداة تحويل — إنه منصة متكاملة بُنيت لتدوم</p>
+    <div class="feats-grid">
+      <div class="feat reveal">
+        <div class="feat-icon">🌍</div>
+        <div class="feat-title">كشف اللغة تلقائياً</div>
+        <div class="feat-desc">يكتشف الذكاء الاصطناعي لغة التسجيل تلقائياً ويُحوّلها بدون أي إعداد مسبق. عربي، إنجليزي، فرنسي والمزيد.</div>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">⚡</div>
+        <div class="feat-title">سرعة الحافة</div>
+        <div class="feat-desc">شبكة Cloudflare العالمية تُعالج طلبك من أقرب نقطة إليك. لا تأخير، لا انتظار.</div>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">🔑</div>
+        <div class="feat-title">API للمطورين</div>
+        <div class="feat-desc">مفاتيح API آمنة لدمج صوتي AI في تطبيقاتك وسير عملك بسطور قليلة من الكود.</div>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">📊</div>
+        <div class="feat-title">لوحة تحكم ذكية</div>
+        <div class="feat-desc">تتبّع استخدامك، راجع سجل تحويلاتك، وادر اشتراكك من مكان واحد.</div>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">🛡️</div>
+        <div class="feat-title">أمان من الدرجة الأولى</div>
+        <div class="feat-desc">تشفير PBKDF2 لكلمات المرور، ملفاتك لا تُحفظ أبداً، ومفاتيح API مُشفّرة بـ SHA-256.</div>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">🎵</div>
+        <div class="feat-title">كل الصيغ الصوتية</div>
+        <div class="feat-desc">MP3 · WAV · M4A · OGG · FLAC · WEBM — ارفع أي صيغة تريدها بدون تحويل مسبق.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     How it works
+══════════════════════════════════════ -->
+<section id="how">
+  <div class="wrap">
+    <div style="text-align:center">
+      <span class="section-label reveal">كيف يعمل</span>
+      <h2 class="section-title reveal">ثلاث خطوات بسيطة</h2>
+      <p class="section-sub reveal" style="margin:0 auto">من التسجيل إلى النص في أقل من دقيقة</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">١</div>
+        <div class="step-title">ارفع ملفك الصوتي</div>
+        <div class="step-desc">اسحب وأفلت الملف أو اختره من جهازك. نقبل كل الصيغ الصوتية الشائعة.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">٢</div>
+        <div class="step-title">الذكاء الاصطناعي يعمل</div>
+        <div class="step-desc">نموذج Whisper يحلّل الصوت ويستخرج النص بدقة استثنائية في ثوانٍ.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">٣</div>
+        <div class="step-title">احصل على النص</div>
+        <div class="step-desc">انسخ النتيجة أو حمّلها كملف TXT. تجد كل تحويلاتك في سجلك الشخصي.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PRICING
+══════════════════════════════════════ -->
+<section id="pricing">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:0">
+      <span class="section-label reveal">الأسعار</span>
+      <h2 class="section-title reveal">خطط شفافة بدون مفاجآت</h2>
+      <p class="section-sub reveal" style="margin:0 auto 36px">ابدأ مجاناً وتوسّع بحسب حاجتك. يمكنك إلغاء الاشتراك في أي وقت.</p>
+      <!-- Toggle -->
+      <div class="billing-toggle reveal">
+        <button class="btog on" id="tog-monthly" onclick="setBilling('monthly')">فوترة شهرية</button>
+        <button class="btog" id="tog-yearly" onclick="setBilling('yearly')">
+          فوترة سنوية <span class="save-badge">وفّر 25%</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Plans -->
+    <div class="plans">
+
+      <!-- Free -->
+      <div class="plan reveal">
+        <div class="plan-name">المجاني</div>
+        <div class="plan-tagline">لتجربة المنصة واكتشاف قدراتها</div>
+        <div class="plan-price">
+          <span class="plan-currency">ر.س</span>
+          <span class="plan-amt" id="p-free">0</span>
+        </div>
+        <div class="plan-period">شهرياً</div>
+        <div class="plan-billed" id="b-free">&nbsp;</div>
+        <button class="plan-btn plan-btn-outline">ابدأ مجاناً</button>
+        <div class="plan-divider"></div>
+        <div class="plan-features-title">ما يشمله</div>
+        <ul class="plan-features">
+          <li><span class="feat-check ok">✓</span><span>30 دقيقة شهرياً</span></li>
+          <li><span class="feat-check ok">✓</span><span>2 مفاتيح API</span></li>
+          <li><span class="feat-check ok">✓</span><span>+40 لغة مدعومة</span></li>
+          <li><span class="feat-check ok">✓</span><span>سجل آخر 20 تحويل</span></li>
+          <li><span class="feat-check no">✗</span><span style="opacity:.5">تصدير بصيغ متعددة</span></li>
+          <li><span class="feat-check no">✗</span><span style="opacity:.5">أولوية في المعالجة</span></li>
+          <li><span class="feat-check no">✗</span><span style="opacity:.5">دعم مخصص</span></li>
+        </ul>
+      </div>
+
+      <!-- Pro -->
+      <div class="plan featured reveal">
+        <div class="plan-crown">⭐ الأكثر شعبية</div>
+        <div class="plan-name">الاحترافي</div>
+        <div class="plan-tagline">للمحترفين والعمل الجاد بشكل يومي</div>
+        <div class="plan-price">
+          <span class="plan-currency">ر.س</span>
+          <span class="plan-amt colored" id="p-pro">49</span>
+        </div>
+        <div class="plan-period">شهرياً لكل مستخدم</div>
+        <div class="plan-billed" id="b-pro">&nbsp;</div>
+        <button class="plan-btn plan-btn-gold" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">ابدأ تجربة 14 يوم مجاناً ←</button>
+        <div class="plan-divider"></div>
+        <div class="plan-features-title">كل ما في المجاني، بالإضافة إلى</div>
+        <ul class="plan-features">
+          <li><span class="feat-check star">★</span><span>300 دقيقة شهرياً</span></li>
+          <li><span class="feat-check ok">✓</span><span>10 مفاتيح API</span></li>
+          <li><span class="feat-check ok">✓</span><span>سجل تحويلات لا محدود</span></li>
+          <li><span class="feat-check ok">✓</span><span>تصدير TXT · SRT · VTT</span></li>
+          <li><span class="feat-check ok">✓</span><span>أولوية في المعالجة</span></li>
+          <li><span class="feat-check ok">✓</span><span>إحصائيات تفصيلية</span></li>
+          <li><span class="feat-check ok">✓</span><span>دعم عبر البريد (استجابة خلال 24 ساعة)</span></li>
+        </ul>
+      </div>
+
+      <!-- Business -->
+      <div class="plan reveal">
+        <div class="plan-name">الأعمال</div>
+        <div class="plan-tagline">للفرق والمؤسسات بحاجة غير محدودة</div>
+        <div class="plan-price">
+          <span class="plan-currency">ر.س</span>
+          <span class="plan-amt" id="p-biz">149</span>
+        </div>
+        <div class="plan-period">شهرياً لكل مستخدم</div>
+        <div class="plan-billed" id="b-biz">&nbsp;</div>
+        <button class="plan-btn plan-btn-outline">تواصل مع فريق المبيعات</button>
+        <div class="plan-divider"></div>
+        <div class="plan-features-title">كل ما في الاحترافي، بالإضافة إلى</div>
+        <ul class="plan-features">
+          <li><span class="feat-check star">★</span><span>استخدام <strong>غير محدود</strong></span></li>
+          <li><span class="feat-check ok">✓</span><span>50 مفتاح API</span></li>
+          <li><span class="feat-check ok">✓</span><span>حسابات فرعية للفريق</span></li>
+          <li><span class="feat-check ok">✓</span><span>SLA مضمون 99.9%</span></li>
+          <li><span class="feat-check ok">✓</span><span>تقارير وإحصائيات متقدمة</span></li>
+          <li><span class="feat-check ok">✓</span><span>تكامل Webhook</span></li>
+          <li><span class="feat-check ok">✓</span><span>دعم مخصص على مدار الساعة</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Comparison table -->
+    <div class="compare-wrap reveal">
+      <div class="compare-header">
+        <span class="cmp-lbl">مقارنة الخطط</span>
+        <span class="cmp-col">مجاني</span>
+        <span class="cmp-col gold-col">احترافي</span>
+        <span class="cmp-col">أعمال</span>
+      </div>
+
+      <div class="compare-section">الاستخدام</div>
+      <div class="compare-row">
+        <span class="cmp-lbl">دقائق شهرية</span>
+        <span class="cmp-col"><span class="cmp-txt">30 د</span></span>
+        <span class="cmp-col"><span class="cmp-txt" style="color:var(--gold)">300 د</span></span>
+        <span class="cmp-col"><span class="cmp-txt">∞ غير محدود</span></span>
+      </div>
+      <div class="compare-row">
+        <span class="cmp-lbl">الصيغ المدعومة</span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+      </div>
+      <div class="compare-row">
+        <span class="cmp-lbl">كشف اللغة تلقائياً</span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+      </div>
+      <div class="compare-row">
+        <span class="cmp-lbl">أولوية المعالجة</span>
+        <span class="cmp-col"><span class="cross">✗</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+      </div>
+
+      <div class="compare-section">API والتكامل</div>
+      <div class="compare-row">
+        <span class="cmp-lbl">مفاتيح API</span>
+        <span class="cmp-col"><span class="cmp-txt">2</span></span>
+        <span class="cmp-col"><span class="cmp-txt" style="color:var(--gold)">10</span></span>
+        <span class="cmp-col"><span class="cmp-txt">50</span></span>
+      </div>
+      <div class="compare-row">
+        <span class="cmp-lbl">Webhook</span>
+        <span class="cmp-col"><span class="cross">✗</span></span>
+        <span class="cmp-col"><span class="cross">✗</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+      </div>
+
+      <div class="compare-section">التصدير</div>
+      <div class="compare-row">
+        <span class="cmp-lbl">تحميل TXT</span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+      </div>
+      <div class="compare-row">
+        <span class="cmp-lbl">SRT · VTT (ترجمات)</span>
+        <span class="cmp-col"><span class="cross">✗</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+      </div>
+
+      <div class="compare-section">الدعم والضمان</div>
+      <div class="compare-row">
+        <span class="cmp-lbl">دعم عبر البريد</span>
+        <span class="cmp-col"><span class="cross">✗</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+      </div>
+      <div class="compare-row">
+        <span class="cmp-lbl">SLA مضمون</span>
+        <span class="cmp-col"><span class="cross">✗</span></span>
+        <span class="cmp-col"><span class="cross">✗</span></span>
+        <span class="cmp-col"><span class="chk">✓ 99.9%</span></span>
+      </div>
+      <div class="compare-row">
+        <span class="cmp-lbl">دعم مخصص 24/7</span>
+        <span class="cmp-col"><span class="cross">✗</span></span>
+        <span class="cmp-col"><span class="cross">✗</span></span>
+        <span class="cmp-col"><span class="chk">✓</span></span>
+      </div>
+    </div>
+
+    <!-- Guarantee -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:40px;margin-top:48px;flex-wrap:wrap" class="reveal">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:24px">🔒</span>
+        <div>
+          <div style="font-size:14px;font-weight:700">بيانات مؤمّنة</div>
+          <div style="font-size:12px;color:var(--txt3)">تشفير عسكري</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:24px">↩️</span>
+        <div>
+          <div style="font-size:14px;font-weight:700">ضمان استرداد 14 يوم</div>
+          <div style="font-size:12px;color:var(--txt3)">بدون أسئلة</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:24px">❌</span>
+        <div>
+          <div style="font-size:14px;font-weight:700">لا بطاقة بنكية</div>
+          <div style="font-size:12px;color:var(--txt3)">لبدء التجربة المجانية</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:24px">🔄</span>
+        <div>
+          <div style="font-size:14px;font-weight:700">إلغاء في أي وقت</div>
+          <div style="font-size:12px;color:var(--txt3)">بدون رسوم إضافية</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     Testimonials
+══════════════════════════════════════ -->
+<section id="social">
+  <div class="wrap">
+    <div style="text-align:center">
+      <span class="section-label reveal">شهادات العملاء</span>
+      <h2 class="section-title reveal">ماذا يقول مستخدمونا</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">«صوتي AI غيّر أسلوب عملي كلياً. كنت أقضي ساعات في تفريغ المقابلات — الآن دقائق. الدقة مذهلة حتى مع اللهجة الخليجية.»</div>
+        <div class="testi-author">
+          <div class="avatar av1">خ</div>
+          <div><div class="testi-name">خالد المنصور</div><div class="testi-role">صحفي بودكاست</div></div>
+        </div>
+      </div>
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">«API الخاص بهم يعمل ببساطة. ربطناه بنظام إدارة المحتوى لدينا في يوم واحد. الخطة الاحترافية تستحق كل ريال.»</div>
+        <div class="testi-author">
+          <div class="avatar av2">س</div>
+          <div><div class="testi-name">سارة الأحمدي</div><div class="testi-role">مطوّرة Full Stack</div></div>
+        </div>
+      </div>
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">«نستخدم خطة الأعمال لفريقنا المكوّن من 15 شخص. السرعة والدقة لا مثيل لهما، والدعم الفني استجاب في أقل من ساعة.»</div>
+        <div class="testi-author">
+          <div class="avatar av3">م</div>
+          <div><div class="testi-name">محمد الغامدي</div><div class="testi-role">مدير تقنية المعلومات</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FAQ
+══════════════════════════════════════ -->
+<section id="faq">
+  <div class="wrap-md">
+    <div style="text-align:center">
+      <span class="section-label reveal">الأسئلة الشائعة</span>
+      <h2 class="section-title reveal">لديك سؤال؟</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-q-txt">ما الصيغ الصوتية المدعومة؟</span>
+          <span class="faq-chevron">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">نقبل جميع الصيغ الصوتية الشائعة بما فيها MP3، WAV، M4A، OGG، FLAC، WEBM، وAAC. لا حاجة لتحويل الملف قبل الرفع.</div></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-q-txt">هل تُحفظ ملفاتي الصوتية على خوادمكم؟</span>
+          <span class="faq-chevron">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">لا. ملفاتك الصوتية لا تُحفظ أبداً. نُعالجها مباشرة ونُعيد إليك النص المستخرج فقط. ما يُحفظ في قاعدة بياناتنا هو النص النهائي وليس الصوت.</div></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-q-txt">كيف تُحسب الدقائق الشهرية؟</span>
+          <span class="faq-chevron">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">تُحسب الدقائق بناءً على المدة الفعلية للتسجيل الصوتي. كل شهر ميلادي تبدأ عداداتك من الصفر. الدقائق غير المستخدمة لا تُنقل إلى الشهر التالي.</div></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-q-txt">هل يمكنني الترقية أو التخفيض في أي وقت؟</span>
+          <span class="faq-chevron">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">نعم بالكامل. يمكنك الترقية فوراً لتحصل على الميزات الإضافية على الفور. التخفيض يسري من دورة الفوترة التالية. إلغاء الاشتراك متاح في أي وقت بدون رسوم.</div></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-q-txt">ما هي دقة التحويل مع اللهجات العربية؟</span>
+          <span class="faq-chevron">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">نموذج Whisper من OpenAI مُدرَّب على مئات اللهجات العربية بما فيها الخليجية والمصرية والشامية والمغربية. الدقة تتراوح بين 95-99% حسب وضوح الصوت ومستوى الضجيج.</div></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-q-txt">هل هناك ضمان استرداد الأموال؟</span>
+          <span class="faq-chevron">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">نعم. نُقدّم ضمان استرداد كامل خلال 14 يوماً من الاشتراك إذا لم تكن راضياً لأي سبب. تواصل مع الدعم وسيتم المعالجة خلال 3 أيام عمل.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     Final CTA
+══════════════════════════════════════ -->
+<section id="cta">
+  <div class="wrap" style="text-align:center">
+    <h2 class="cta-title reveal">جاهز لتحويل<br/><span>صوتك إلى نص؟</span></h2>
+    <p class="cta-sub reveal">انضم إلى آلاف المستخدمين الذين وفّروا ساعات من العمل اليدوي</p>
+    <button class="btn-gold reveal" style="font-size:18px;padding:18px 48px">ابدأ مجاناً الآن — بدون بطاقة ←</button>
+    <p class="cta-note reveal">30 دقيقة مجانية كل شهر · لا عقود · إلغاء في أي وقت</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     Footer
+══════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">صوتي<b>AI</b></div>
+        <div class="footer-desc">منصة SaaS متكاملة لتحويل الصوت إلى نص بدقة استثنائية، مدعومة بتقنية Whisper AI وشبكة Cloudflare العالمية.</div>
+      </div>
+      <div>
+        <h4>المنتج</h4>
+        <a class="footer-link" href="#features">المميزات</a>
+        <a class="footer-link" href="#pricing">الأسعار</a>
+        <a class="footer-link" href="#">توثيق API</a>
+        <a class="footer-link" href="#">سجل التحديثات</a>
+      </div>
+      <div>
+        <h4>الشركة</h4>
+        <a class="footer-link" href="#">من نحن</a>
+        <a class="footer-link" href="#">المدونة</a>
+        <a class="footer-link" href="#">الوظائف</a>
+        <a class="footer-link" href="#">تواصل معنا</a>
+      </div>
+      <div>
+        <h4>القانوني</h4>
+        <a class="footer-link" href="#">سياسة الخصوصية</a>
+        <a class="footer-link" href="#">شروط الاستخدام</a>
+        <a class="footer-link" href="#">سياسة الاسترداد</a>
+        <a class="footer-link" href="#">اتفاقية SLA</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 صوتي AI. جميع الحقوق محفوظة.</div>
+      <div class="footer-badges">
+        <span class="fbadge">🔒 SSL آمن</span>
+        <span class="fbadge">⚡ Cloudflare</span>
+        <span class="fbadge">🤖 Whisper AI</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════
+   Billing Toggle
+══════════════════════════════════════ */
+const prices={
+  monthly:{free:0,pro:49,biz:149},
+  yearly: {free:0,pro:37,biz:112}
+};
+let billing='monthly';
+function setBilling(mode){
+  billing=mode;
+  document.getElementById('tog-monthly').classList.toggle('on',mode==='monthly');
+  document.getElementById('tog-yearly').classList.toggle('on',mode==='yearly');
+  const p=prices[mode];
+  document.getElementById('p-free').textContent=p.free;
+  document.getElementById('p-pro').textContent=p.pro;
+  document.getElementById('p-biz').textContent=p.biz;
+  const showAnnual=mode==='yearly';
+  document.getElementById('b-free').textContent=showAnnual?'يُدفع 0 ر.س سنوياً':' ';
+  document.getElementById('b-pro').textContent=showAnnual?`يُدفع ${p.pro*12} ر.س سنوياً (وفّر ${(49-p.pro)*12} ر.س)`:' ';
+  document.getElementById('b-biz').textContent=showAnnual?`يُدفع ${p.biz*12} ر.س سنوياً (وفّر ${(149-p.biz)*12} ر.س)`:' ';
+}
+
+/* ══════════════════════════════════════
+   FAQ Accordion
+══════════════════════════════════════ */
+function toggleFaq(el){
+  const wasOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen) el.classList.add('open');
+}
+
+/* ══════════════════════════════════════
+   Scroll Reveal
+══════════════════════════════════════ */
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach((el,i)=>{
+  el.style.transitionDelay=(i%4)*.08+'s';
+  io.observe(el);
+});
+
+/* ══════════════════════════════════════
+   Nav scroll effect
+══════════════════════════════════════ */
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.background=
+    window.scrollY>60?'rgba(11,13,19,.95)':'rgba(11,13,19,.75)';
+});
+
+/* ══════════════════════════════════════
+   Smooth scroll for nav links
+══════════════════════════════════════ */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
