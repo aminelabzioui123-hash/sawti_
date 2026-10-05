@@ -56,9 +56,8 @@ footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--bd);color:var
 <nav class="bn glass" id="bn"></nav>
 <main><div class="top">
 <select id="country" aria-label="Country"></select>
-<button id="demo" aria-label="Demo mode">Demo</button>
 <button id="theme" aria-label="Toggle theme">Theme</button></div>
-<div id="dbn" class="glass" style="display:none;padding:10px 16px;margin-bottom:14px;border-color:var(--g);font-size:13px"><b style="color:var(--g)">DEMO</b> — أخبار تجريبية للعرض فقط، وليست بيانات حقيقية.</div>
+
 <div id="app" class="view"></div>
 <footer><b>TIMASLA</b><p style="margin:6px 0 14px">Football, Live. Smarter.</p>
 <a href="#">About</a><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a><a href="#">Sources</a>
@@ -67,17 +66,8 @@ footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--bd);color:var
 /* ---------- Data / service layer: swap base URL or provider here. Keys live server-side only. ---------- */
 const Data={base:'/api/football',
  async get(p){const r=await fetch(this.base+p,{headers:{Accept:'application/json'}});if(!r.ok)throw new Error(r.status);const j=await r.json();if(!Array.isArray(j.items))throw new Error('bad shape');return j.items},
- live:()=>Data.get('/live'),matches:()=>Data.get('/matches'),news:()=>DEMO?Promise.resolve(DEMO_NEWS()):Data.get('/news'),transfers:()=>Data.get('/transfers'),
+ live:()=>Data.get('/live'),matches:()=>Data.get('/matches'),news:()=>Data.get('/news'),transfers:()=>Data.get('/transfers'),
  watch:(id,c)=>Data.get('/watch?match='+encodeURIComponent(id)+'&country='+c)};
-let DEMO=localStorage.getItem('tm_demo')!=='0';
-const ago=m=>new Date(Date.now()-m*60000).toISOString();
-const DEMO_NEWS=()=>[
-{category:'TRANSFER',certainty:'CONFIRMED',headline:'[DEMO] نادي تجريبي A يعلن تعاقده مع لاعب وسط',summary:'خبر تجريبي لعرض شكل بطاقة الخبر المؤكد. ليس خبرا حقيقيا.',source:'Demo Source',publishedAt:ago(2)},
-{category:'TRANSFER',certainty:'REPORTED',headline:'[DEMO] تقارير عن اهتمام نادي تجريبي B بمهاجم',summary:'خبر تجريبي لعرض حالة REPORTED. لا يعتمد على أي مصدر حقيقي.',source:'Demo Media',publishedAt:ago(25)},
-{category:'TRANSFER',certainty:'RUMOUR',headline:'[DEMO] إشاعة: انتقال محتمل لحارس مرمى',summary:'خبر تجريبي لعرض حالة RUMOUR، وهي لا تُقدَّم كحقيقة أبدا.',source:'Demo Forum',publishedAt:ago(90)},
-{category:'MATCH',certainty:'CONFIRMED',headline:'[DEMO] تأجيل مباراة تجريبية بسبب الأحوال الجوية',summary:'مثال على خبر رسمي من اتحاد تجريبي.',source:'Demo Federation',publishedAt:ago(180)},
-{category:'INJURY',certainty:'REPORTED',headline:'[DEMO] إصابة محتملة لقائد فريق تجريبي',summary:'مثال لعرض تصنيف الإصابات.',source:'Demo Club',publishedAt:ago(300)},
-{category:'COMPETITION',certainty:'CONFIRMED',headline:'[DEMO] الإعلان عن جدول جولة تجريبية',summary:'مثال على خبر صادر عن مسابقة رسمية.',source:'Demo League',publishedAt:ago(600)}];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const TZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
 const COUNTRIES={MA:'Morocco',FR:'France',GB:'UK',US:'USA',ES:'Spain',DE:'Germany',IT:'Italy',SA:'Saudi Arabia',AE:'UAE',QA:'Qatar',EG:'Egypt'};
@@ -148,8 +138,7 @@ mt.innerHTML=k&&k.length?`<div class="glass card">${k.map(x=>`<p>${esc(typeof x=
 tb.onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;tb.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c==b));show(b.dataset.t)};
 window.rmc=async()=>{mh.innerHTML=skel(1);try{m=(await Data.get('/match?id='+encodeURIComponent(id)))[0];document.title=`${m.home.name} vs ${m.away.name} — Live Score & Where to Watch | Timasla`;mh.innerHTML=`<div class="glass card" style="text-align:center"><p class="meta">${esc(m.competition)} · ${m.status==='LIVE'?`<span class="live">${esc(m.minute)}'</span>`:esc(m.status)}</p><div class="row" style="justify-content:space-around;margin-top:14px"><b>${esc(m.home.name)}</b><span class="score" style="font-size:48px">${esc(m.home.score??'–')} : ${esc(m.away.score??'–')}</span><b>${esc(m.away.name)}</b></div></div>`;show('Overview')}catch{mh.innerHTML=err('rmc');mt.innerHTML=''}};rmc()}};
 /* ---------- Router ---------- */
-demo.onclick=()=>{DEMO=!DEMO;localStorage.setItem('tm_demo',DEMO?'1':'0');render()};
-function render(){clearInterval(V.t);dbn.style.display=DEMO?'block':'none';demo.textContent='Demo: '+(DEMO?'On':'Off');const h=(location.hash.slice(1)||'home').split('/');const r=h[0];
+function render(){clearInterval(V.t);const h=(location.hash.slice(1)||'home').split('/');const r=h[0];
 document.querySelectorAll('.nb').forEach(b=>b.classList.toggle('on',b.dataset.r===r));
 app.className='';void app.offsetWidth;app.className='view';document.title=r=='home'?'TIMASLA — Football, Live. Smarter.':r[0].toUpperCase()+r.slice(1)+' | Timasla';
 (V[r]||V.home)(h[1]);window.scrollTo(0,0)}
