@@ -57,6 +57,23 @@ nav.t{display:flex;flex:1;gap:2px;overflow-x:auto;scrollbar-width:none;justify-c
 [data-theme=light] .fs:hover,[data-theme=light] .cd:hover,[data-theme=light] .tc:hover,[data-theme=light] .ac:hover,[data-theme=light] .cl:hover{box-shadow:0 18px 44px rgba(20,30,50,.14),0 0 30px rgba(15,157,75,.1)}
 body,.glass,header,.ch,.lg,.ib{transition:background-color .4s,color .4s,border-color .4s}
 @media(max-width:560px){.hb{padding:8px 10px 8px 14px;gap:8px}.lg button{padding:5px 7px;font-size:11px}.ib{width:32px;height:32px}.logo{letter-spacing:.16em}}
+
+.nu{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.nc{border-radius:26px;padding:22px;transition:.35s}.nc:hover{transform:translateY(-4px);border-color:rgba(48,224,122,.4)}.nc h3{font-size:17px;line-height:1.3;font-weight:600;margin:8px 0 2px}
+.cdn{margin-top:18px;font-size:clamp(26px,3vw,34px);font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}.cdn i{font-style:normal;font-size:12px;font-weight:600;color:var(--mu);margin:0 9px 0 3px}
+.fn a{display:block;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:600}.fn a span{display:block;font-weight:400;font-size:12px;color:var(--mu)}.kb{font-size:11px;color:var(--mu);border:1px solid var(--bd);border-radius:6px;padding:1px 6px;margin-inline-start:8px}
+
+.mc{cursor:pointer;transition:.3s}.mc:hover{transform:translateY(-3px);border-color:rgba(48,224,122,.4)}
+.rdw{border-radius:26px;overflow-x:auto;padding:0;scrollbar-width:thin}.rdi{position:relative;direction:ltr;min-height:200px}.rdi .tk{position:absolute;top:0;bottom:0;border-left:1px dashed var(--bd);padding:8px 6px;font-size:11px;color:var(--mu);pointer-events:none}
+.rdi .nw{position:absolute;top:0;bottom:0;width:2px;background:var(--g);box-shadow:0 0 16px var(--g);z-index:2}.rdi .nw span{position:absolute;top:8px;left:6px;font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--g)}
+.rdi .ln{position:absolute;left:10px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);z-index:1;background:var(--bg);padding:1px 6px;border-radius:6px;opacity:.85}
+.pp{position:absolute;width:170px;padding:6px 11px;border-radius:12px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:var(--gl);border:1px solid var(--bd);backdrop-filter:blur(10px);transition:.3s}.pp i{font-style:normal;color:var(--mu);font-weight:400}.pp small{display:block;font-size:10px;font-weight:400;color:var(--mu)}.pp.fo{border-color:var(--g);box-shadow:0 0 20px rgba(48,224,122,.35)}.pp.lv2{border-color:var(--g)}
+.mh{display:grid;grid-template-columns:1.5fr 1fr;gap:18px}.mh .glass{border-radius:26px;padding:22px}.mh h3{font-size:15px;line-height:1.35;font-weight:600;margin:3px 0}.mr2{display:block;padding:13px 0;border-bottom:1px solid var(--bd);transition:.25s}.mr2:last-child{border:0}.mr2:hover h3{color:var(--g)}
+.pa{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--bd)}.pa:last-child{border:0}.pa .av{width:48px;height:48px;font-size:15px;flex:none}.pa b{display:block;font-size:15px}.pa span.d{display:block}
+@media(max-width:1020px){.mh{grid-template-columns:1fr}}
+
+.pr{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--bd);font-size:14px;font-weight:600}.pr>span:first-child{text-align:end}.sp{display:flex;gap:6px;align-items:center}.sp input{width:46px;text-align:center;font:inherit;font-weight:700;padding:8px 0;border-radius:10px;border:1px solid var(--bd);background:var(--gl);color:var(--tx);outline:0}.sp input:focus{border-color:var(--g)}
+.big{font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1.1}.po button{display:block;width:100%;text-align:start;padding:12px 16px;margin-top:8px;border-radius:14px;border:1px solid var(--bd);background:var(--gl);font-weight:600;position:relative;overflow:hidden;transition:.25s}.po button:hover,.po button.on{border-color:var(--g)}.po .bar{position:absolute;inset:0 auto 0 0;background:rgba(48,224,122,.2)}.po button span{position:relative}
+table.t2{width:100%;border-collapse:collapse;font-size:14px}.t2 th{font-size:11px;color:var(--mu);text-align:start;padding:12px 6px;letter-spacing:.1em;text-transform:uppercase}.t2 td{padding:11px 6px;border-top:1px solid var(--bd);font-variant-numeric:tabular-nums}.t2 td:first-child{color:var(--mu);width:34px}.t2 tr:nth-child(-n+5) td:first-child{color:var(--g);font-weight:700}
 </style></head><body>
 <header id="hd" class="glass"><div class="hb"><a class="logo" href="#top">TIM<b>ASLA</b></a><nav class="t" id="nv"></nav>
 <div style="display:flex;gap:10px;align-items:center"><div class="lg" id="lg"><button data-l="ar">العربية</button><button data-l="en" class="on">English</button><button data-l="fr">Français</button></div><button class="ib" id="th" aria-label="Toggle day / night mode"></button><button class="ib" id="sb" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button></div></div></header>
@@ -72,19 +89,26 @@ body,.glass,header,.ch,.lg,.ib{transition:background-color .4s,color .4s,border-
 <circle cx="1236" cy="662" r="15" fill="#fff"/><circle cx="1236" cy="662" r="38" fill="url(#fl)" opacity=".6"/></svg>
 <div class="hc"><p class="ey" id="eyb">Global football newsroom</p><h1>كل أخبار الكرة في مكان واحد</h1><p class="sub" id="hs">Global football news, transfers, scores and analysis from around the world.</p><div class="bt"><a class="b1" href="#news" id="b1">Latest News</a><a class="b2" href="#mc" id="b2">Match Center</a></div></div></section>
 <main class="w">
+<section class="sec rv" id="nxt"><div class="sh"><h2 data-t="nu">Next Up</h2><span>Live countdowns · confirmed dates only</span></div><div class="nu" id="nuc"></div></section>
+<section class="sec rv" id="mh"><div class="sh"><h2 data-t="mh">Morocco Hub</h2><span>Everything Atlas Lions · sourced</span></div><div class="mh"><div class="glass" id="mhn"></div><div style="display:grid;gap:18px;align-content:start"><div class="glass" id="mhd"></div><div class="glass" id="mhp"></div></div></div></section>
+<section class="sec rv" id="rd"><div class="sh"><h2 data-t="rd">Kickoff Radar</h2><span>Next 4 days · your clubs glow · tap a match card anywhere to make a share card</span></div><div class="rdw glass"><div class="rdi" id="rdi"></div></div></section>
 <section class="sec rv" id="news"><div class="sh"><h2 data-t="ln">Latest News</h2><span>Original summaries · source linked</span></div><div class="ng" id="ng"></div></section>
 <section class="sec rv" id="world"><div class="sh"><h2 data-t="wf">World Football</h2><span>Latest from the giants</span></div><div class="cg" id="cg"></div></section>
+<section class="sec rv" id="fy"><div class="sh"><h2 data-t="fy">For You</h2><span>Follow your clubs · saved on this device</span></div><div class="pl" id="fch"></div><div class="pl"><button class="ch" id="ics">Add my upcoming fixtures to calendar (.ics)</button></div><div class="sbd" id="fd"></div><div class="fn" id="fn"></div></section>
 <section class="sec rv" id="mc"><div class="sh"><h2 data-t="mt">Match Center</h2><span id="mu"></span></div><div class="pl" id="lc"></div><div class="pl" id="tb"></div><div class="sbd" id="sd"></div></section>
+<section class="sec rv" id="pg"><div class="sh"><h2 data-t="pg">Predict & Win</h2><span>3 pts exact score · 1 pt right result · saved on this device</span></div><div class="mh"><div class="glass" id="prl"></div><div style="display:grid;gap:18px;align-content:start"><div class="glass" id="prs"></div><div class="glass" id="pol"></div></div></div></section>
+<section class="sec rv" id="stn"><div class="sh"><h2 data-t="st">Standings</h2><span>football-data.org · needs the server key</span></div><div class="pl" id="stc"></div><div class="glass" id="stb" style="border-radius:26px;padding:8px 22px;overflow-x:auto"></div></section>
 <section class="sec rv" id="tr"><div class="sh"><h2 data-t="tf">Transfer Center</h2><span>Official · Reported · Rumour</span></div><div class="pl" id="tfc"></div><div class="tg" id="tg"></div></section>
 <section class="sec rv" id="an"><div class="sh"><h2 data-t="an">Analysis</h2><span>Via CBS Sports · Serie A</span></div><div class="ag" id="ag"></div></section>
 <p class="note">Summaries are written in our own words and link to the sources named. Hero art is an original illustration — replace it with licensed photography. Team marks are monograms, not official crests. Match data is a snapshot taken 11 October 2026; it becomes live once a data provider is connected. *Live status reflects the moment of capture.</p></main>
 <footer>TIMASLA · Global football media · © 2026</footer>
+<div class="so" id="sc2"><div style="max-width:420px;margin:auto;text-align:center"><canvas id="cv" width="1080" height="1350" style="width:100%;border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.5)"></canvas><div class="bt" style="justify-content:center"><button class="b1" id="shb">Share</button><a class="b2" id="dlb" download="timasla-match.png" style="color:var(--tx)">Download</a></div></div></div>
 <nav class="bn glass" id="bn"></nav>
 <script>
 const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const T={en:{nav:['Home','Latest News','World Football','Champions League','Premier League','La Liga','Transfers','Matches','Analysis'],sub:'Global football news, transfers, scores and analysis from around the world.',b:['Latest News','Match Center'],ln:'Latest News',wf:'World Football',mt:'Match Center',tf:'Transfer Center',an:'Analysis',ey:'Global football newsroom',bn:['Home','News','World','Matches','Transfers']},
-ar:{nav:['الرئيسية','آخر الأخبار','كرة القدم العالمية','دوري الأبطال','الدوري الإنجليزي','الليغا','الانتقالات','المباريات','التحليلات'],sub:'أخبار كرة القدم والانتقالات والنتائج والتحليلات من حول العالم.',b:['آخر الأخبار','مركز المباريات'],ln:'آخر الأخبار',wf:'كرة القدم العالمية',mt:'مركز المباريات',tf:'مركز الانتقالات',an:'التحليلات',ey:'غرفة أخبار كرة القدم العالمية',bn:['الرئيسية','الأخبار','العالم','المباريات','الانتقالات']},
-fr:{nav:['Accueil','Dernières news','Football mondial','Ligue des champions','Premier League','La Liga','Transferts','Matchs','Analyses'],sub:'Actualités, transferts, scores et analyses du football mondial.',b:['Dernières news','Match Center'],ln:'Dernières news',wf:'Football mondial',mt:'Match Center',tf:'Centre des transferts',an:'Analyses',ey:'Rédaction mondiale du football',bn:['Accueil','News','Monde','Matchs','Transferts']}};
+const T={en:{nav:['Home','Latest News','World Football','Champions League','Premier League','La Liga','Transfers','Matches','Analysis'],sub:'Global football news, transfers, scores and analysis from around the world.',b:['Latest News','Match Center'],ln:'Latest News',wf:'World Football',mt:'Match Center',tf:'Transfer Center',an:'Analysis',nu:'Next Up',fy:'For You',rd:'Kickoff Radar',mh:'Morocco Hub',pg:'Predict & Win',st:'Standings',ey:'Global football newsroom',bn:['Home','News','World','Matches','Transfers']},
+ar:{nav:['الرئيسية','آخر الأخبار','كرة القدم العالمية','دوري الأبطال','الدوري الإنجليزي','الليغا','الانتقالات','المباريات','التحليلات'],sub:'أخبار كرة القدم والانتقالات والنتائج والتحليلات من حول العالم.',b:['آخر الأخبار','مركز المباريات'],ln:'آخر الأخبار',wf:'كرة القدم العالمية',mt:'مركز المباريات',tf:'مركز الانتقالات',an:'التحليلات',nu:'القادم',fy:'من أجلك',rd:'رادار المباريات',mh:'ركن المغرب',pg:'توقّع واربح',st:'الترتيب',ey:'غرفة أخبار كرة القدم العالمية',bn:['الرئيسية','الأخبار','العالم','المباريات','الانتقالات']},
+fr:{nav:['Accueil','Dernières news','Football mondial','Ligue des champions','Premier League','La Liga','Transferts','Matchs','Analyses'],sub:'Actualités, transferts, scores et analyses du football mondial.',b:['Dernières news','Match Center'],ln:'Dernières news',wf:'Football mondial',mt:'Match Center',tf:'Centre des transferts',an:'Analyses',nu:'À venir',fy:'Pour vous',rd:'Radar des matchs',mh:'Coin Maroc',pg:'Pronostics',st:'Classements',ey:'Rédaction mondiale du football',bn:['Accueil','News','Monde','Matchs','Transferts']}};
 const HREF=['#top','#news','#world',['#mc','UCL'],['#mc','PL'],['#mc','LL'],'#tr','#mc','#an'];let lang='en',LG='ALL',TB='LIVE';
 function ui(){const t=T[lang];document.documentElement.lang=lang;document.documentElement.dir=lang=='ar'?'rtl':'ltr';
 nv.innerHTML=t.nav.map((n,i)=>`<a href="${[].concat(HREF[i])[0]}" ${HREF[i][1]?`data-lg="${HREF[i][1]}"`:''}>${n}</a>`).join('');
@@ -127,7 +151,7 @@ mu.textContent='Kick-offs in your time zone · '+tz;
 function drawM(){lc.innerHTML=Object.entries(LGN).map(([k,v])=>`<button class="ch ${k==LG?'on':''}" data-g="${k}">${v}</button>`).join('');
 tb.innerHTML=Object.entries(TBN).map(([k,v])=>`<button class="ch ${k==TB?'on':''}" data-b="${k}">${v}</button>`).join('');
 const r=M.filter(m=>(LG=='ALL'||m[0]==LG)&&(TB=='ALL'||m[6]==TB));
-sd.innerHTML=r.length?r.map(m=>`<div class="mc glass"><div class="mt"><span>${LGN[m[0]]}</span>${m[6]=='LIVE'?'<span class="lv">LIVE*</span>':`<span>${m[6]=='FT'?'FT':ft(m[5])}</span>`}</div>
+sd.innerHTML=r.length?r.map(m=>`<div class="mc glass"><div class="mt"><span>${LGN[m[0]]||esc(m[0])}</span>${m[6]=='LIVE'?'<span class="lv">LIVE'+(m[8]?' · '+m[8]+"'":'*')+'</span>':`<span>${m[6]=='FT'?'FT':ft(m[5])}</span>`}</div>
 <div class="tr"><div class="cr">${mono(m[1])}</div><span>${esc(m[1])}</span><b>${m[3]??'–'}</b></div><div class="tr"><div class="cr">${mono(m[2])}</div><span>${esc(m[2])}</span><b>${m[4]??'–'}</b></div>${m[7]?`<p class="st">${esc(m[7])}</p>`:''}</div>`).join(''):'<div class="empty glass" style="grid-column:1/-1;border-radius:22px">No matches in this view.</div>'}
 lc.onclick=e=>{const b=e.target.closest('[data-g]');if(b){LG=b.dataset.g;drawM()}};tb.onclick=e=>{const b=e.target.closest('[data-b]');if(b){TB=b.dataset.b;drawM()}};drawM();
 /* TRANSFERS: Official only with a named source; Reported/Rumour clearly labelled */
@@ -149,4 +173,111 @@ const SUN='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 
 function setT(t){document.documentElement.dataset.theme=t;th.innerHTML=t=='light'?MOON:SUN;th.title=t=='light'?'Night mode':'Day mode';try{localStorage.setItem('tm_theme',t)}catch(e){}}
 th.onclick=()=>setT(document.documentElement.dataset.theme=='light'?'dark':'light');
 th.innerHTML=document.documentElement.dataset.theme=='light'?MOON:SUN;
+
+/* LIVE: polls /api/live (server proxy). If it is missing or fails, the dated snapshot stays and nothing is invented. */
+const LK={'Premier League':'PL','La Liga':'LL','Bundesliga':'BL','Ligue 1':'L1','UEFA Champions League':'UCL'};
+async function pollLive(){if(document.hidden||location.protocol=='file:')return;
+try{const r=await fetch('/api/live',{cache:'no-store'});if(!r.ok)throw 0;const j=await r.json();if(j.error)throw 0;
+for(let i=M.length-1;i>=0;i--)if(M[i][6]=='LIVE')M.splice(i,1);
+j.items.reverse().forEach(x=>M.unshift([LK[x.league]||x.league,x.home,x.away,x.hs,x.as,j.updated,'LIVE',x.venue||'',x.minute]));
+mu.textContent='Live · updated '+new Date(j.updated).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:tz})+' · '+tz;drawM();drawF();drawR()}catch(e){}}
+setInterval(pollLive,30000);document.addEventListener('visibilitychange',pollLive);pollLive();
+
+const AS=new URLSearchParams(location.search).get('asof'),T0=Date.now(),B0=AS?new Date(AS).getTime():T0,NOW=()=>B0+(Date.now()-T0);
+/* NEXT UP: countdowns to confirmed fixtures/events. Morocco kick-offs use UTC+1 as published. Past items drop out. */
+const NU=[{c:'African football',t:'Futsal AFCON · Morocco v Algeria',s:'Rabat · 20:00 Morocco time',at:'2026-10-12T20:00:00+01:00'},{c:'Champions League',t:'Arsenal v Lille',s:'Emirates Stadium',at:'2026-10-13T19:00:00Z'},{c:'World Cup',t:'U-17 Women’s World Cup · Morocco v New Zealand',s:'The hosts open their campaign',at:'2026-10-17T18:00:00+01:00'},{c:'Awards',t:'Ballon d’Or ceremony',s:'London · date only, time not confirmed',at:'2026-10-26T00:00:00Z',day:1}];
+const nowMs=NOW(),UP=NU.filter(n=>new Date(n.at)>nowMs);
+if(!UP.length)nuc.innerHTML='<div class="empty glass" style="grid-column:1/-1;border-radius:22px">All dates in this edition have passed. <a href="?asof=2026-10-11T18:00:00Z" style="color:var(--g);font-weight:600">Preview as of 11 Oct 2026 →</a></div>';
+nuc.innerHTML=UP.map(n=>`<div class="nc glass"><span class="k">${n.c}</span><h3>${n.t}</h3><p class="d">${n.s}</p><div class="cdn" data-at="${n.at}" ${n.day?'data-day=1':''}></div></div>`).join('');
+const z=n=>String(n).padStart(2,'0');
+function tick(){const now=NOW();nuc.querySelectorAll('[data-at]').forEach(e=>{const d=new Date(e.dataset.at)-now;if(d<=0){e.textContent='Started';return}
+const D=Math.floor(d/864e5),H=Math.floor(d%864e5/36e5),Mi=Math.floor(d%36e5/6e4),S=Math.floor(d%6e4/1e3);
+e.innerHTML=e.dataset.day?`<b>${D}</b><i>days to go</i>`:`<b>${D}</b><i>d</i><b>${z(H)}</b><i>h</i><b>${z(Mi)}</b><i>m</i><b>${z(S)}</b><i>s</i>`})}
+tick();setInterval(tick,1000);
+/* FOR YOU: follow clubs (stored locally); shows their matches and headlines that mention them */
+const TM=['Real Madrid','Barcelona','Man City','Liverpool','PSG','Bayern Munich','Inter','Arsenal','Chelsea','Man United','Atlético Madrid','Dortmund','Napoli'];
+let FOL=[];try{FOL=JSON.parse(localStorage.getItem('tm_teams')||'[]')}catch(e){}
+const ORD={LIVE:0,NS:1,FT:2};
+const card=m=>`<div class="mc glass"><div class="mt"><span>${LGN[m[0]]||esc(m[0])}</span>${m[6]=='LIVE'?'<span class="lv">LIVE'+(m[8]?' · '+m[8]+"'":'*')+'</span>':`<span>${m[6]=='FT'?'FT':ft(m[5])}</span>`}</div><div class="tr"><div class="cr">${mono(m[1])}</div><span>${esc(m[1])}</span><b>${m[3]??'–'}</b></div><div class="tr"><div class="cr">${mono(m[2])}</div><span>${esc(m[2])}</span><b>${m[4]??'–'}</b></div></div>`;
+function drawF(){fch.innerHTML=TM.map(t=>`<button class="ch ${FOL.includes(t)?'on':''}" data-tm="${esc(t)}">${esc(t)}</button>`).join('');
+if(!FOL.length){fd.innerHTML='<div class="empty glass" style="grid-column:1/-1;border-radius:22px">Pick the clubs you follow and their matches and headlines gather here.</div>';fn.innerHTML='';return}
+const r=M.filter(m=>FOL.includes(m[1])||FOL.includes(m[2])).sort((a,b)=>ORD[a[6]]-ORD[b[6]]||(a[6]=='FT'?new Date(b[5])-new Date(a[5]):new Date(a[5])-new Date(b[5])));
+fd.innerHTML=r.length?r.map(card).join(''):'<div class="empty glass" style="grid-column:1/-1;border-radius:22px">No matches for these clubs in this snapshot.</div>';
+const h=N.filter(n=>FOL.some(t=>n.t.toLowerCase().includes(t.toLowerCase())));fn.innerHTML=h.map(n=>`<a ${n.u[0]=='#'?'':'target="_blank" rel="noopener"'} href="${n.u}">${esc(n.t)}<span>${esc(n.a)} · ${esc(n.d)}</span></a>`).join('')}
+fch.onclick=e=>{const b=e.target.closest('[data-tm]');if(!b)return;const t=b.dataset.tm;FOL=FOL.includes(t)?FOL.filter(x=>x!=t):[...FOL,t];try{localStorage.setItem('tm_teams',JSON.stringify(FOL))}catch(x){}drawF();drawR()};drawF();
+/* keyboard: / or Ctrl/Cmd+K opens search */
+addEventListener('keydown',e=>{const typing=/input|textarea/i.test(document.activeElement.tagName);if((e.key=='k'&&(e.metaKey||e.ctrlKey))||(e.key=='/'&&!typing)){e.preventDefault();sb.click()}});
+
+/* KICKOFF RADAR: upcoming/live fixtures on a time axis, stacked so simultaneous kick-offs never overlap */
+function drawR(){const now=NOW(),H=36e5,st=now-2*H,en=st+100*H,W=1500,PW=170,x=t=>(t-st)/(en-st)*W;
+const L=['UCL','PL','LL','BL','L1'],f=M.filter(m=>(m[6]=='NS'||m[6]=='LIVE')&&new Date(m[5])>=st&&new Date(m[5])<en);
+if(!f.length){rd.style.display='none';return}rd.style.display='';
+let h='',y=34;const first=Math.ceil(st/(12*H))*12*H;
+for(let t=first;t<en;t+=12*H)h+=`<div class="tk" style="left:${x(t)}px">${new Date(t).toLocaleString('en-GB',{weekday:'short',hour:'2-digit',minute:'2-digit',timeZone:tz})}</div>`;
+h+=`<div class="nw" style="left:${x(now)}px"><span>NOW</span></div>`;
+L.forEach(k=>{const ms=f.filter(m=>m[0]==k).sort((a,b)=>new Date(a[5])-new Date(b[5]));if(!ms.length)return;const rows=[];
+h+=`<div class="ln" style="top:${y-2}px">${LGN[k]}</div>`;
+ms.forEach(m=>{const l=x(new Date(m[5]));let r=rows.findIndex(e=>e+8<=l);if(r<0){r=rows.length;rows.push(0)}rows[r]=l+PW;
+h+=`<div class="pp ${FOL.includes(m[1])||FOL.includes(m[2])?'fo':''} ${m[6]=='LIVE'?'lv2':''}" style="left:${l}px;top:${y+18+r*46}px" title="${esc(m[1])} v ${esc(m[2])}">${esc(m[1])} <i>v</i> ${esc(m[2])}<small>${m[6]=='LIVE'?'LIVE':ft(m[5])}</small></div>`});
+y+=18+rows.length*46+22});
+rdi.style.width=W+'px';rdi.style.height=y+'px';rdi.innerHTML=h}
+drawR();
+/* MOROCCO HUB */
+const MN=[N[5],{c:'World Cup',t:'Morocco hosts the U-17 Women’s World Cup, 17 Oct – 7 Nov',a:'Wikipedia',d:'2026',u:'https://en.wikipedia.org/wiki/2026_FIFA_U-17_Women%27s_World_Cup'},{c:'National teams',t:'Federation hands the youth national teams to a new French coach',a:'sport7.ma',d:'10 Oct 2026',u:'https://sport7.ma/'},{c:'Rankings',t:'Morocco’s FIFA ranking moves after the match against Mali',a:'Kooora',d:'4 Oct 2026',u:'https://www.kooora.com/'},N[4]];
+mhn.innerHTML=`<span class="k">Latest</span>`+MN.map(n=>`<a class="mr2" ${n.u[0]=='#'?'':'target="_blank" rel="noopener"'} href="${n.u}"><span class="d">${esc(n.c)}</span><h3>${esc(n.t)}</h3><span class="d">${esc(n.a)} · ${esc(n.d)}</span></a>`).join('');
+mhd.innerHTML=`<span class="k">Next dates</span>`+(UP.filter(n=>/Morocco/.test(n.t)).map(n=>`<div class="pa"><div><b>${esc(n.t)}</b><span class="d">${new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZone:tz}).format(new Date(n.at))} · your time</span></div></div>`).join('')||'<p class="d" style="margin-top:10px">No upcoming Morocco dates in this edition.</p>');
+mhp.innerHTML=`<span class="k">Players abroad</span>`+TR.filter(t=>/Saibari|En-Nesyri/.test(t[0])).map(t=>`<div class="pa"><div class="av">${mono(t[0])}</div><div><b>${esc(t[0])}</b><span class="d">${esc(t[1])} → ${esc(t[2])}</span><span class="bd ${t[3]}" style="margin-top:6px">${BN[t[3]]}</span></div></div>`).join('');
+/* SHARE CARDS: tap any match card -> 1080x1350 PNG (share sheet on phones, download elsewhere) */
+const cx=cv.getContext('2d');
+function fit(t,w,px,wt){let n=px;do{cx.font=`${wt} ${n}px Inter,'IBM Plex Sans Arabic',sans-serif`;n-=2}while(cx.measureText(t).width>w&&n>18)}
+async function card2(d){try{await document.fonts.load('800 60px Inter')}catch(e){}
+const W=1080,H=1350,c=cx;let g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#05070b');g.addColorStop(1,'#0b1a12');c.fillStyle=g;c.fillRect(0,0,W,H);
+g=c.createRadialGradient(W*.82,110,10,W*.82,110,720);g.addColorStop(0,'rgba(48,224,122,.38)');g.addColorStop(1,'rgba(48,224,122,0)');c.fillStyle=g;c.fillRect(0,0,W,H);
+c.strokeStyle='rgba(255,255,255,.16)';c.lineWidth=2;c.beginPath();c.roundRect?c.roundRect(60,60,W-120,H-120,56):c.rect(60,60,W-120,H-120);c.stroke();
+c.textAlign='center';c.fillStyle='#30E07A';fit(d.comp.toUpperCase(),800,36,700);c.fillText(d.comp.toUpperCase(),W/2,190);
+c.fillStyle='#8E95A3';fit(d.st,800,30,600);c.fillText(d.st,W/2,240);
+[[d.a,270],[d.b,810]].forEach(([t,xx])=>{c.fillStyle='rgba(255,255,255,.08)';c.beginPath();c.arc(xx,520,100,0,7);c.fill();c.strokeStyle='rgba(255,255,255,.22)';c.stroke();
+c.fillStyle='#fff';fit(mono(t),150,52,800);c.fillText(mono(t),xx,540);fit(t,400,48,700);c.fillText(t,xx,700)});
+c.fillStyle='#fff';const sc=d.sa=='–'?'v':d.sa+' – '+d.sb;fit(sc,300,150,800);c.fillText(sc,W/2,570);
+c.fillStyle='#fff';c.font='800 58px Inter';c.fillText('TIM',W/2-70,1150);c.fillStyle='#30E07A';c.fillText('ASLA',W/2+78,1150);
+c.fillStyle='#8E95A3';c.font='500 26px Inter';c.fillText('All football news in one place',W/2,1200);dlb.href=cv.toDataURL('image/png')}
+document.addEventListener('click',e=>{const el=e.target.closest('.mc');if(!el)return;const n=[...el.querySelectorAll('.tr span')].map(x=>x.textContent),b=[...el.querySelectorAll('.tr b')].map(x=>x.textContent),m=[...el.querySelectorAll('.mt span')].map(x=>x.textContent);
+card2({comp:m[0]||'',st:(m[1]||'').replace('*',''),a:n[0],b:n[1],sa:b[0],sb:b[1]}).then(()=>sc2.classList.add('on'))});
+sc2.onclick=e=>{if(e.target==sc2||e.target.parentElement==sc2)sc2.classList.remove('on')};
+shb.onclick=()=>cv.toBlob(async bl=>{const f=new File([bl],'timasla-match.png',{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:'TIMASLA'})}catch(x){}}else dlb.click()});
+addEventListener('keydown',e=>{if(e.key=='Escape')sc2.classList.remove('on')});
+
+/* PREDICT & WIN (local until accounts exist): 3 pts exact score, 1 pt correct result; settles when a final score appears in the data */
+const PK=m=>m[1]+'|'+m[2]+'|'+m[5].slice(0,10),GR=(p,m)=>p[0]==m[3]&&p[1]==m[4]?3:Math.sign(p[0]-p[1])==Math.sign(m[3]-m[4])?1:0;
+let PR={};try{PR=JSON.parse(localStorage.getItem('tm_pred')||'{}')}catch(e){}
+const isF=m=>FOL.includes(m[1])||FOL.includes(m[2]);
+function drawPS(){const done=Object.entries(PR).map(([k,p])=>{const m=M.find(x=>PK(x)==k&&x[6]=='FT');return m&&{m,p,pt:GR(p,m)}}).filter(Boolean);
+const tot=done.reduce((a,d)=>a+d.pt,0),ex=done.filter(d=>d.pt==3).length;
+prs.innerHTML=`<span class="k">Your score</span><div class="big">${tot}<span style="font-size:15px;font-weight:600;color:var(--mu)"> pts</span></div><p class="d">${done.length} settled · ${ex} exact · ${Object.keys(PR).length} made</p>`+done.slice(0,4).map(d=>`<div class="pa"><div><b>${esc(d.m[1])} ${d.m[3]}–${d.m[4]} ${esc(d.m[2])}</b><span class="d">You: ${d.p[0]}–${d.p[1]} · +${d.pt}</span></div></div>`).join('')+'<p class="d" style="margin-top:12px">Leaderboard against other fans arrives with accounts (Supabase). Until then scores stay on this device.</p>'}
+function drawP(){const up=M.filter(m=>m[6]=='NS'&&new Date(m[5])>NOW()).sort((a,b)=>isF(b)-isF(a)||new Date(a[5])-new Date(b[5])).slice(0,8);
+prl.innerHTML='<span class="k">Upcoming · locks at kick-off</span>'+(up.length?up.map(m=>{const p=PR[PK(m)]||['',''];return `<div class="pr"><span>${esc(m[1])}</span><div class="sp"><input type="number" min="0" max="30" inputmode="numeric" aria-label="${esc(m[1])} goals" data-k="${esc(PK(m))}" data-i="0" value="${p[0]}"><b>–</b><input type="number" min="0" max="30" inputmode="numeric" aria-label="${esc(m[2])} goals" data-k="${esc(PK(m))}" data-i="1" value="${p[1]}"></div><span>${esc(m[2])}</span></div>`}).join(''):'<p class="d" style="margin-top:10px">No upcoming fixtures in this edition.</p>');drawPS()}
+const PT={};prl.addEventListener('change',e=>{const i=e.target,k=i.dataset.k;if(!k)return;const c=PT[k]||(PT[k]=(PR[k]||['','']).slice());c[+i.dataset.i]=i.value===''?'':Math.max(0,Math.min(30,parseInt(i.value)||0));
+if(c[0]!==''&&c[1]!==''){PR[k]=[+c[0],+c[1]];try{localStorage.setItem('tm_pred',JSON.stringify(PR))}catch(x){}drawPS()}});
+drawP();
+/* FAN POLL: vote saved locally; community % shown only if /api/polls returns real counts */
+const POLL={id:'ucl-2026-10-13-gal-bar',q:'Galatasaray v Barcelona: who takes it?',o:['Galatasaray','Draw','Barcelona'],end:'2026-10-13T19:00:00Z'};
+let VT=null,VID='';try{VT=localStorage.getItem('tm_vote_'+POLL.id);VID=localStorage.getItem('tm_voter')||(crypto.randomUUID?crypto.randomUUID():'');localStorage.setItem('tm_voter',VID)}catch(e){}
+async function drawPoll(){let cnt=null;if(location.protocol!='file:'){try{const r=await fetch('/api/polls?id='+POLL.id);const j=await r.json();if(j.counts&&j.counts.length)cnt=j.counts}catch(e){}}
+const tot=cnt?cnt.reduce((a,c)=>a+Number(c.votes),0):0;
+pol.innerHTML=`<span class="k">Fan poll</span><h3 style="margin:6px 0 4px;font-size:16px">${POLL.q}</h3><div class="po">`+POLL.o.map(o=>{const v=cnt?(cnt.find(c=>c.option==o)||{votes:0}).votes:0,pc=tot?Math.round(v/tot*100):0,sh=VT&&cnt;return `<button data-o="${o}" class="${VT==o?'on':''}">${sh?`<i class="bar" style="width:${pc}%"></i>`:''}<span>${o}${sh?' · '+pc+'%':''}</span></button>`}).join('')+`</div><p class="d" style="margin-top:10px">${VT?(cnt?tot+' votes':'Vote saved. Community results show once the poll feed is live.'):'One vote per device.'}</p>`}
+if(new Date(POLL.end)<NOW())pol.style.display='none';else{pol.onclick=async e=>{const b=e.target.closest('[data-o]');if(!b||VT)return;VT=b.dataset.o;try{localStorage.setItem('tm_vote_'+POLL.id,VT)}catch(x){}
+if(location.protocol!='file:'&&VID)try{await fetch('/api/polls',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({id:POLL.id,voter:VID,option:VT})})}catch(x){}drawPoll()};drawPoll()}
+/* STANDINGS via /api/standings; honest empty state otherwise */
+const SC=[['PL','Premier League'],['PD','La Liga'],['BL1','Bundesliga'],['SA','Serie A'],['FL1','Ligue 1']];let SK='PL';
+async function drawS(){stc.innerHTML=SC.map(([k,v])=>`<button class="ch ${k==SK?'on':''}" data-s="${k}">${v}</button>`).join('');
+try{if(location.protocol=='file:')throw 0;const r=await fetch('/api/standings?c='+SK);if(!r.ok)throw 0;const j=await r.json();if(!j.rows||!j.rows.length)throw 0;
+stb.innerHTML=`<table class="t2"><tr><th>#</th><th>Club</th><th>P</th><th>GD</th><th>Pts</th></tr>${j.rows.map(r=>`<tr><td>${r.pos}</td><td>${esc(r.team)}</td><td>${r.played}</td><td>${r.gd}</td><td><b>${r.pts}</b></td></tr>`).join('')}</table><p class="d" style="padding:8px 0 12px">Source: football-data.org · updated ${new Date(j.updated).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:tz})}</p>`}
+catch(e){stb.innerHTML='<div class="empty">Standings appear here once FOOTBALL_DATA_API_KEY is set on the server. No table is shown from memory.</div>'}}
+stc.onclick=e=>{const b=e.target.closest('[data-s]');if(b){SK=b.dataset.s;drawS()}};drawS();
+/* CALENDAR EXPORT: followed clubs' upcoming fixtures -> .ics (works offline, no account) */
+ics.onclick=()=>{const up=M.filter(m=>m[6]=='NS'&&new Date(m[5])>NOW()&&isF(m));const lab=ics.textContent;
+if(!up.length){ics.textContent='Follow a club that has upcoming fixtures first';setTimeout(()=>ics.textContent=lab,2500);return}
+const f=d=>new Date(d).toISOString().replace(/[-:]/g,'').replace(/\.\d+/,'');
+const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TIMASLA//EN',...up.flatMap(m=>['BEGIN:VEVENT','UID:'+PK(m).replace(/\W/g,'')+'@timasla','DTSTAMP:'+f(NOW()),'DTSTART:'+f(m[5]),'DTEND:'+f(new Date(m[5]).getTime()+72e5),'SUMMARY:'+m[1]+' v '+m[2]+' ('+(LGN[m[0]]||m[0])+')','END:VEVENT']),'END:VCALENDAR'];
+const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([L.join('\r\n')],{type:'text/calendar'}));a.download='timasla-fixtures.ics';a.click()};
 </script></body></html>
