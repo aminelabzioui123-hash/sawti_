@@ -1,283 +1,327 @@
-<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="dark light"><script>try{var t=localStorage.getItem("tm_theme")||(matchMedia("(prefers-color-scheme:light)").matches?"light":"dark");document.documentElement.dataset.theme=t}catch(e){}</script>
-<title>TIMASLA — Global football news, scores & transfers</title><meta name="description" content="Global football news, transfers, scores and analysis from around the world.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#08090B;--tx:#F5F5F7;--mu:#8E95A3;--g:#30E07A;--gl:rgba(255,255,255,.055);--bd:rgba(255,255,255,.11);--sv:linear-gradient(180deg,#fff,#9AA3B2);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth;scroll-padding-top:110px}html,body{background:var(--bg);color:var(--tx);font-family:Inter,'IBM Plex Sans Arabic',system-ui,sans-serif}body{overflow-x:hidden;line-height:1.5;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}.w{max-width:1180px;margin:auto;padding:0 22px}
-body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(800px 500px at 80% -10%,rgba(48,224,122,.1),transparent 60%),radial-gradient(700px 500px at 0% 40%,rgba(120,140,180,.08),transparent 60%)}
-.glass{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.035));backdrop-filter:blur(24px) saturate(170%);-webkit-backdrop-filter:blur(24px) saturate(170%);border:1px solid var(--bd);box-shadow:0 12px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14)}
-header{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:12px;right:12px;max-width:1156px;margin:auto;z-index:60;border-radius:22px;transition:.35s}header.s{top:calc(6px + env(safe-area-inset-top,0px));background:rgba(12,14,18,.72)}
-.hb{display:flex;align-items:center;gap:16px;padding:10px 14px 10px 20px}.logo{font-weight:800;font-size:19px;letter-spacing:.24em}.logo b{color:var(--g);text-shadow:0 0 16px rgba(48,224,122,.6)}
-nav.t{display:flex;flex:1;gap:2px;overflow-x:auto;scrollbar-width:none;justify-content:center}nav.t::-webkit-scrollbar{display:none}nav.t a{white-space:nowrap;font-size:13px;font-weight:500;color:#c3c9d4;padding:7px 11px;border-radius:99px;transition:.25s}nav.t a:hover{background:rgba(255,255,255,.09);color:#fff}
-.lg{display:flex;font-size:12px;font-weight:600;background:rgba(255,255,255,.06);border-radius:99px;padding:3px}.lg button{padding:5px 10px;border-radius:99px;color:var(--mu);transition:.25s}.lg button.on{background:rgba(255,255,255,.16);color:#fff}
-.ib{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.06)}.ib svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
-/* HERO */
-.hero{position:relative;min-height:min(92vh,820px);display:flex;align-items:flex-end;overflow:hidden;border-radius:0 0 36px 36px}.hero svg.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,9,11,.35),transparent 30%,rgba(8,9,11,.85) 85%,var(--bg))}.hc{position:relative;z-index:2;padding:150px 22px 70px;max-width:1180px;margin:auto;width:100%}
-.ey{font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--g)}h1{font-family:'IBM Plex Sans Arabic',Inter;font-size:clamp(40px,8vw,96px);line-height:1.12;font-weight:700;letter-spacing:-.02em;background:var(--sv);-webkit-background-clip:text;background-clip:text;color:transparent;margin:14px 0 14px}
-.sub{max-width:560px;color:#b9c0cc;font-size:clamp(16px,2vw,20px)}.bt{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}.b1,.b2{padding:14px 26px;border-radius:99px;font-weight:600;font-size:15px;transition:.3s}.b1{background:var(--g);color:#031a0d;box-shadow:0 0 34px rgba(48,224,122,.4)}.b2{background:rgba(255,255,255,.1);backdrop-filter:blur(14px);border:1px solid var(--bd)}.b1:hover,.b2:hover{transform:translateY(-2px)}
-/* SECTIONS */
-.sec{margin-top:96px}.sh{display:flex;justify-content:space-between;align-items:end;margin-bottom:26px}.sh h2{font-size:clamp(26px,4vw,40px);letter-spacing:-.025em;font-weight:700;background:var(--sv);-webkit-background-clip:text;background-clip:text;color:transparent}.sh span{font-size:13px;color:var(--mu);text-align:end}
-.k{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--g)}.d{font-size:12px;color:var(--mu)}
-.ng{display:grid;grid-template-columns:1.6fr 1fr;gap:18px}.fs{position:relative;border-radius:28px;overflow:hidden;min-height:480px;display:flex;align-items:flex-end;transition:.4s}.fs .art,.cd .art{position:absolute;inset:0}.fs .tx{position:relative;padding:30px;width:100%;background:linear-gradient(0deg,rgba(6,8,10,.92),transparent)}.fs h3{font-size:clamp(26px,3.6vw,40px);line-height:1.12;letter-spacing:-.02em;font-weight:700;margin:8px 0 10px}
-.sg{display:grid;gap:14px}.cd{position:relative;border-radius:22px;padding:18px 20px;transition:.35s}.cd h3{font-size:17px;line-height:1.3;font-weight:600;margin:5px 0}.fs:hover,.cd:hover,.tc:hover,.ac:hover,.cl:hover{transform:translateY(-4px);border-color:rgba(48,224,122,.4);box-shadow:0 18px 50px rgba(0,0,0,.5),0 0 40px rgba(48,224,122,.1)}
-.art{background:radial-gradient(circle at 25% 25%,rgba(48,224,122,.28),transparent 50%),radial-gradient(circle at 85% 80%,rgba(130,150,200,.22),transparent 55%),#0d1117}.art:before{content:"";position:absolute;inset:0;opacity:.7;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 100'%3E%3Cg fill='none' stroke='white' stroke-opacity='.13' stroke-width='.7'%3E%3Crect x='6' y='6' width='148' height='88'/%3E%3Cpath d='M80 6v88'/%3E%3Ccircle cx='80' cy='50' r='13'/%3E%3C/g%3E%3C/svg%3E") center/cover}
-.pl{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}.ch{padding:8px 16px;border-radius:99px;font-size:13px;font-weight:600;color:var(--mu);background:var(--gl);border:1px solid var(--bd);transition:.25s}.ch.on,.ch:hover{color:#fff;background:rgba(48,224,122,.14);border-color:rgba(48,224,122,.5)}
-.cg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.cl{border-radius:22px;padding:18px;transition:.35s}.cr{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;letter-spacing:.04em;background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.04));border:1px solid var(--bd)}.cl h3{margin:12px 0 4px;font-size:17px}.cl p{font-size:13px;color:#b4bbc8;line-height:1.45}
-.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}.tc{border-radius:26px;padding:22px;transition:.35s}.av{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-size:22px;font-weight:700;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.28),rgba(255,255,255,.04));border:1px solid var(--bd)}.tc h3{font-size:20px;margin:14px 0 2px}.rt{margin:12px 0;display:flex;align-items:center;gap:8px;font-size:14px;color:#cdd3de}.rt i{font-style:normal;color:var(--mu)}
-.bd{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:99px}.O{background:rgba(48,224,122,.15);color:var(--g)}.R{background:rgba(255,196,60,.14);color:#ffc43c}.U{background:rgba(255,255,255,.09);color:#b4bbc8}
-.sbd{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}.mc{border-radius:24px;padding:18px 20px}.mt{display:flex;justify-content:space-between;font-size:12px;color:var(--mu)}.mt .lv{color:var(--g);font-weight:700}.mt .lv:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--g);margin-inline-end:6px;animation:p 1.6s infinite}@keyframes p{50%{opacity:.25}}
-.tr{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;margin-top:14px;font-weight:600}.tr .cr{width:36px;height:36px;font-size:10px}.tr b{font-size:26px;font-variant-numeric:tabular-nums;font-weight:700}.st{font-size:11px;color:var(--mu);margin-top:12px}
-.ag{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.ac{border-radius:26px;padding:26px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between;transition:.35s}.ac h3{font-size:21px;line-height:1.25;letter-spacing:-.01em;margin:10px 0}
-.empty{padding:28px;text-align:center;color:var(--mu)}.note{margin-top:80px;padding:24px 0;color:var(--mu);font-size:13px;line-height:1.8;border-top:1px solid var(--bd)}footer{padding:34px 0 120px;text-align:center;color:var(--mu);font-size:13px}
-.bn{display:none}.so{position:fixed;inset:0;z-index:90;background:rgba(5,6,8,.7);backdrop-filter:blur(30px);display:none;padding:90px 22px}.so.on{display:block}.so input{width:100%;max-width:640px;display:block;margin:auto;background:rgba(255,255,255,.08);border:1px solid var(--bd);border-radius:18px;padding:18px 22px;font:inherit;font-size:20px;color:#fff;outline:0}#sr{max-width:640px;margin:18px auto}#sr a{display:block;padding:12px 4px;border-bottom:1px solid var(--bd)}
-.rv{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1)}.rv.in{opacity:1;transform:none}
-@media(max-width:1020px){nav.t{display:none}.hb{justify-content:space-between}.ng,.ag{grid-template-columns:1fr}.cg{grid-template-columns:repeat(2,1fr)}.fs{min-height:400px}
-.bn{display:flex;position:fixed;left:14px;right:14px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:70;justify-content:space-around;padding:8px;border-radius:26px}.bn a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:600;color:var(--mu);padding:7px 0;border-radius:18px}.bn a.on{color:var(--g);background:rgba(48,224,122,.1)}.bn svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}}
-@media(max-width:560px){.cg{grid-template-columns:1fr 1fr}.hc{padding-bottom:50px}.sec{margin-top:70px}.logo{font-size:16px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RevisionGate: Turn Scattered Client Feedback Into Approved Changes</title>
+  <meta name="description" content="Organize client feedback, protect your project scope, and get approval for extra work, all in one place." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* DAY MODE */
-:root[data-theme=light]{--bg:#F5F5F7;--tx:#0B0D12;--mu:#667085;--g:#0F9D4B;--gl:rgba(0,0,0,.04);--bd:rgba(0,0,0,.1);--sv:linear-gradient(180deg,#0B0D12,#5A6372);color-scheme:light}
-[data-theme=light] body:before{background:radial-gradient(800px 500px at 85% -10%,rgba(15,157,75,.09),transparent 60%),radial-gradient(700px 500px at 0% 45%,rgba(90,110,150,.08),transparent 60%)}
-[data-theme=light] .glass{background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,.62));box-shadow:0 10px 34px rgba(20,30,50,.09),inset 0 1px 0 #fff}
-[data-theme=light] header.s{background:rgba(255,255,255,.8)}[data-theme=light] .logo b{text-shadow:none}
-[data-theme=light] nav.t a{color:#3b4252}[data-theme=light] nav.t a:hover{background:rgba(0,0,0,.06);color:#000}
-[data-theme=light] .lg,[data-theme=light] .ib{background:rgba(0,0,0,.06)}[data-theme=light] .lg button.on{background:#fff;color:#000;box-shadow:0 1px 4px rgba(0,0,0,.15)}[data-theme=light] .ib svg{stroke:#111}
-[data-theme=light] .hero{--tx:#F5F5F7}[data-theme=light] .hero h1{background:linear-gradient(180deg,#fff,#9AA3B2);-webkit-background-clip:text;background-clip:text}[data-theme=light] .hero .k,[data-theme=light] .hero .ey{color:#30E07A}
-[data-theme=light] .hero:after{background:linear-gradient(180deg,rgba(8,9,11,.35),transparent 30%,rgba(8,9,11,.85) 85%,#08090B)}
-[data-theme=light] .fs{color:#F5F5F7}[data-theme=light] .fs .k{color:#30E07A}[data-theme=light] .fs .d{color:#aab2c0}
-[data-theme=light] .ch.on,[data-theme=light] .ch:hover{color:#0a5c2c;background:rgba(15,157,75,.12);border-color:rgba(15,157,75,.5)}
-[data-theme=light] .cr,[data-theme=light] .av{background:linear-gradient(145deg,rgba(0,0,0,.08),rgba(0,0,0,.02))}
-[data-theme=light] .cl p{color:#4b5563}[data-theme=light] .rt{color:#374151}
-[data-theme=light] .O{background:rgba(15,157,75,.14);color:#0a7d3a}[data-theme=light] .R{background:rgba(255,170,0,.2);color:#9a6200}[data-theme=light] .U{background:rgba(0,0,0,.06);color:#4b5563}
-[data-theme=light] .so{background:rgba(245,245,247,.78)}[data-theme=light] .so input{background:rgba(255,255,255,.9);color:#111}
-[data-theme=light] .fs:hover,[data-theme=light] .cd:hover,[data-theme=light] .tc:hover,[data-theme=light] .ac:hover,[data-theme=light] .cl:hover{box-shadow:0 18px 44px rgba(20,30,50,.14),0 0 30px rgba(15,157,75,.1)}
-body,.glass,header,.ch,.lg,.ib{transition:background-color .4s,color .4s,border-color .4s}
-@media(max-width:560px){.hb{padding:8px 10px 8px 14px;gap:8px}.lg button{padding:5px 7px;font-size:11px}.ib{width:32px;height:32px}.logo{letter-spacing:.16em}}
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --bg-soft: #f8fafc;
+      --accent-bg: #eef2ff;
+    }
 
-.nu{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.nc{border-radius:26px;padding:22px;transition:.35s}.nc:hover{transform:translateY(-4px);border-color:rgba(48,224,122,.4)}.nc h3{font-size:17px;line-height:1.3;font-weight:600;margin:8px 0 2px}
-.cdn{margin-top:18px;font-size:clamp(26px,3vw,34px);font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}.cdn i{font-style:normal;font-size:12px;font-weight:600;color:var(--mu);margin:0 9px 0 3px}
-.fn a{display:block;padding:12px 0;border-bottom:1px solid var(--bd);font-weight:600}.fn a span{display:block;font-weight:400;font-size:12px;color:var(--mu)}.kb{font-size:11px;color:var(--mu);border:1px solid var(--bd);border-radius:6px;padding:1px 6px;margin-inline-start:8px}
+    html { scroll-behavior: smooth; }
 
-.mc{cursor:pointer;transition:.3s}.mc:hover{transform:translateY(-3px);border-color:rgba(48,224,122,.4)}
-.rdw{border-radius:26px;overflow-x:auto;padding:0;scrollbar-width:thin}.rdi{position:relative;direction:ltr;min-height:200px}.rdi .tk{position:absolute;top:0;bottom:0;border-left:1px dashed var(--bd);padding:8px 6px;font-size:11px;color:var(--mu);pointer-events:none}
-.rdi .nw{position:absolute;top:0;bottom:0;width:2px;background:var(--g);box-shadow:0 0 16px var(--g);z-index:2}.rdi .nw span{position:absolute;top:8px;left:6px;font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--g)}
-.rdi .ln{position:absolute;left:10px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);z-index:1;background:var(--bg);padding:1px 6px;border-radius:6px;opacity:.85}
-.pp{position:absolute;width:170px;padding:6px 11px;border-radius:12px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:var(--gl);border:1px solid var(--bd);backdrop-filter:blur(10px);transition:.3s}.pp i{font-style:normal;color:var(--mu);font-weight:400}.pp small{display:block;font-size:10px;font-weight:400;color:var(--mu)}.pp.fo{border-color:var(--g);box-shadow:0 0 20px rgba(48,224,122,.35)}.pp.lv2{border-color:var(--g)}
-.mh{display:grid;grid-template-columns:1.5fr 1fr;gap:18px}.mh .glass{border-radius:26px;padding:22px}.mh h3{font-size:15px;line-height:1.35;font-weight:600;margin:3px 0}.mr2{display:block;padding:13px 0;border-bottom:1px solid var(--bd);transition:.25s}.mr2:last-child{border:0}.mr2:hover h3{color:var(--g)}
-.pa{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--bd)}.pa:last-child{border:0}.pa .av{width:48px;height:48px;font-size:15px;flex:none}.pa b{display:block;font-size:15px}.pa span.d{display:block}
-@media(max-width:1020px){.mh{grid-template-columns:1fr}}
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background: #ffffff;
+      line-height: 1.6;
+    }
 
-.pr{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--bd);font-size:14px;font-weight:600}.pr>span:first-child{text-align:end}.sp{display:flex;gap:6px;align-items:center}.sp input{width:46px;text-align:center;font:inherit;font-weight:700;padding:8px 0;border-radius:10px;border:1px solid var(--bd);background:var(--gl);color:var(--tx);outline:0}.sp input:focus{border-color:var(--g)}
-.big{font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1.1}.po button{display:block;width:100%;text-align:start;padding:12px 16px;margin-top:8px;border-radius:14px;border:1px solid var(--bd);background:var(--gl);font-weight:600;position:relative;overflow:hidden;transition:.25s}.po button:hover,.po button.on{border-color:var(--g)}.po .bar{position:absolute;inset:0 auto 0 0;background:rgba(48,224,122,.2)}.po button span{position:relative}
-table.t2{width:100%;border-collapse:collapse;font-size:14px}.t2 th{font-size:11px;color:var(--mu);text-align:start;padding:12px 6px;letter-spacing:.1em;text-transform:uppercase}.t2 td{padding:11px 6px;border-top:1px solid var(--bd);font-variant-numeric:tabular-nums}.t2 td:first-child{color:var(--mu);width:34px}.t2 tr:nth-child(-n+5) td:first-child{color:var(--g);font-weight:700}
-</style></head><body>
-<header id="hd" class="glass"><div class="hb"><a class="logo" href="#top">TIM<b>ASLA</b></a><nav class="t" id="nv"></nav>
-<div style="display:flex;gap:10px;align-items:center"><div class="lg" id="lg"><button data-l="ar">العربية</button><button data-l="en" class="on">English</button><button data-l="fr">Français</button></div><button class="ib" id="th" aria-label="Toggle day / night mode"></button><button class="ib" id="sb" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button></div></div></header>
-<div class="so" id="so"><input id="si" placeholder="Search teams, matches, headlines" aria-label="Search"><div id="sr"></div></div>
-<section class="hero" id="top"><svg class="bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#04060a"/><stop offset=".6" stop-color="#0b1220"/><stop offset="1" stop-color="#0f2a1c"/></linearGradient><radialGradient id="fl"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><linearGradient id="bm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe9ff" stop-opacity=".5"/><stop offset="1" stop-color="#cfe9ff" stop-opacity="0"/></linearGradient><linearGradient id="pt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14391f"/><stop offset="1" stop-color="#061409"/></linearGradient><filter id="bl"><feGaussianBlur stdDeviation="3"/></filter></defs>
-<rect width="1600" height="900" fill="url(#sk)"/>
-<g opacity=".9"><polygon points="260,120 120,820 520,820" fill="url(#bm)"/><polygon points="1340,120 1080,820 1480,820" fill="url(#bm)"/><polygon points="800,60 620,820 980,820" fill="url(#bm)" opacity=".5"/></g>
-<circle cx="260" cy="120" r="70" fill="url(#fl)"/><circle cx="1340" cy="120" r="70" fill="url(#fl)"/><circle cx="800" cy="60" r="60" fill="url(#fl)" opacity=".7"/>
-<g fill="#0a0e15" stroke="#1b2432" stroke-width="2"><path d="M0 520 Q800 300 1600 520 L1600 640 Q800 440 0 640Z"/><path d="M0 600 Q800 400 1600 600 L1600 700 Q800 520 0 700Z" fill="#0d121b"/></g>
-<g fill="#cfe9ff" opacity=".35" filter="url(#bl)"><circle cx="300" cy="500" r="3"/><circle cx="520" cy="470" r="3"/><circle cx="760" cy="455" r="3"/><circle cx="1010" cy="462" r="3"/><circle cx="1250" cy="480" r="3"/></g>
-<path d="M0 690 L1600 690 L1600 900 L0 900Z" fill="url(#pt)"/><g stroke="#2f7a46" stroke-opacity=".45" fill="none" stroke-width="2"><path d="M140 900 L520 690 M1460 900 L1080 690 M800 690 V900"/><ellipse cx="800" cy="800" rx="170" ry="38"/></g>
-<g transform="translate(1010 330)" fill="#04070b"><circle cx="86" cy="26" r="24"/><path d="M64 56 Q96 44 118 66 L136 128 L104 150 L98 238 L112 300 L84 304 L66 236 L52 150 L40 112 Z"/><path d="M118 70 L168 60 L176 80 L128 110Z"/><path d="M58 96 L8 130 L18 152 L66 128Z"/><path d="M96 236 L170 290 L200 326 L178 338 L140 312 L84 280Z"/></g>
-<circle cx="1236" cy="662" r="15" fill="#fff"/><circle cx="1236" cy="662" r="38" fill="url(#fl)" opacity=".6"/></svg>
-<div class="hc"><p class="ey" id="eyb">Global football newsroom</p><h1>كل أخبار الكرة في مكان واحد</h1><p class="sub" id="hs">Global football news, transfers, scores and analysis from around the world.</p><div class="bt"><a class="b1" href="#news" id="b1">Latest News</a><a class="b2" href="#mc" id="b2">Match Center</a></div></div></section>
-<main class="w">
-<section class="sec rv" id="nxt"><div class="sh"><h2 data-t="nu">Next Up</h2><span>Live countdowns · confirmed dates only</span></div><div class="nu" id="nuc"></div></section>
-<section class="sec rv" id="mh"><div class="sh"><h2 data-t="mh">Morocco Hub</h2><span>Everything Atlas Lions · sourced</span></div><div class="mh"><div class="glass" id="mhn"></div><div style="display:grid;gap:18px;align-content:start"><div class="glass" id="mhd"></div><div class="glass" id="mhp"></div></div></div></section>
-<section class="sec rv" id="rd"><div class="sh"><h2 data-t="rd">Kickoff Radar</h2><span>Next 4 days · your clubs glow · tap a match card anywhere to make a share card</span></div><div class="rdw glass"><div class="rdi" id="rdi"></div></div></section>
-<section class="sec rv" id="news"><div class="sh"><h2 data-t="ln">Latest News</h2><span>Original summaries · source linked</span></div><div class="ng" id="ng"></div></section>
-<section class="sec rv" id="world"><div class="sh"><h2 data-t="wf">World Football</h2><span>Latest from the giants</span></div><div class="cg" id="cg"></div></section>
-<section class="sec rv" id="fy"><div class="sh"><h2 data-t="fy">For You</h2><span>Follow your clubs · saved on this device</span></div><div class="pl" id="fch"></div><div class="pl"><button class="ch" id="ics">Add my upcoming fixtures to calendar (.ics)</button></div><div class="sbd" id="fd"></div><div class="fn" id="fn"></div></section>
-<section class="sec rv" id="mc"><div class="sh"><h2 data-t="mt">Match Center</h2><span id="mu"></span></div><div class="pl" id="lc"></div><div class="pl" id="tb"></div><div class="sbd" id="sd"></div></section>
-<section class="sec rv" id="pg"><div class="sh"><h2 data-t="pg">Predict & Win</h2><span>3 pts exact score · 1 pt right result · saved on this device</span></div><div class="mh"><div class="glass" id="prl"></div><div style="display:grid;gap:18px;align-content:start"><div class="glass" id="prs"></div><div class="glass" id="pol"></div></div></div></section>
-<section class="sec rv" id="stn"><div class="sh"><h2 data-t="st">Standings</h2><span>football-data.org · needs the server key</span></div><div class="pl" id="stc"></div><div class="glass" id="stb" style="border-radius:26px;padding:8px 22px;overflow-x:auto"></div></section>
-<section class="sec rv" id="tr"><div class="sh"><h2 data-t="tf">Transfer Center</h2><span>Official · Reported · Rumour</span></div><div class="pl" id="tfc"></div><div class="tg" id="tg"></div></section>
-<section class="sec rv" id="an"><div class="sh"><h2 data-t="an">Analysis</h2><span>Via CBS Sports · Serie A</span></div><div class="ag" id="ag"></div></section>
-<p class="note">Summaries are written in our own words and link to the sources named. Hero art is an original illustration — replace it with licensed photography. Team marks are monograms, not official crests. Match data is a snapshot taken 11 October 2026; it becomes live once a data provider is connected. *Live status reflects the moment of capture.</p></main>
-<footer>TIMASLA · Global football media · © 2026</footer>
-<div class="so" id="sc2"><div style="max-width:420px;margin:auto;text-align:center"><canvas id="cv" width="1080" height="1350" style="width:100%;border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.5)"></canvas><div class="bt" style="justify-content:center"><button class="b1" id="shb">Share</button><a class="b2" id="dlb" download="timasla-match.png" style="color:var(--tx)">Download</a></div></div></div>
-<nav class="bn glass" id="bn"></nav>
-<script>
-const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const T={en:{nav:['Home','Latest News','World Football','Champions League','Premier League','La Liga','Transfers','Matches','Analysis'],sub:'Global football news, transfers, scores and analysis from around the world.',b:['Latest News','Match Center'],ln:'Latest News',wf:'World Football',mt:'Match Center',tf:'Transfer Center',an:'Analysis',nu:'Next Up',fy:'For You',rd:'Kickoff Radar',mh:'Morocco Hub',pg:'Predict & Win',st:'Standings',ey:'Global football newsroom',bn:['Home','News','World','Matches','Transfers']},
-ar:{nav:['الرئيسية','آخر الأخبار','كرة القدم العالمية','دوري الأبطال','الدوري الإنجليزي','الليغا','الانتقالات','المباريات','التحليلات'],sub:'أخبار كرة القدم والانتقالات والنتائج والتحليلات من حول العالم.',b:['آخر الأخبار','مركز المباريات'],ln:'آخر الأخبار',wf:'كرة القدم العالمية',mt:'مركز المباريات',tf:'مركز الانتقالات',an:'التحليلات',nu:'القادم',fy:'من أجلك',rd:'رادار المباريات',mh:'ركن المغرب',pg:'توقّع واربح',st:'الترتيب',ey:'غرفة أخبار كرة القدم العالمية',bn:['الرئيسية','الأخبار','العالم','المباريات','الانتقالات']},
-fr:{nav:['Accueil','Dernières news','Football mondial','Ligue des champions','Premier League','La Liga','Transferts','Matchs','Analyses'],sub:'Actualités, transferts, scores et analyses du football mondial.',b:['Dernières news','Match Center'],ln:'Dernières news',wf:'Football mondial',mt:'Match Center',tf:'Centre des transferts',an:'Analyses',nu:'À venir',fy:'Pour vous',rd:'Radar des matchs',mh:'Coin Maroc',pg:'Pronostics',st:'Classements',ey:'Rédaction mondiale du football',bn:['Accueil','News','Monde','Matchs','Transferts']}};
-const HREF=['#top','#news','#world',['#mc','UCL'],['#mc','PL'],['#mc','LL'],'#tr','#mc','#an'];let lang='en',LG='ALL',TB='LIVE';
-function ui(){const t=T[lang];document.documentElement.lang=lang;document.documentElement.dir=lang=='ar'?'rtl':'ltr';
-nv.innerHTML=t.nav.map((n,i)=>`<a href="${[].concat(HREF[i])[0]}" ${HREF[i][1]?`data-lg="${HREF[i][1]}"`:''}>${n}</a>`).join('');
-hs.textContent=t.sub;b1.textContent=t.b[0];b2.textContent=t.b[1];eyb.textContent=t.ey;document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t[e.dataset.t]);
-const I=['M3 11l9-8 9 8v10H3z','M4 4h16v16H4zM8 9h8M8 13h6','M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18','M3 5h18v14H3zM12 5v14','M4 8h14l-3-3M20 16H6l3 3'],H=['#top','#news','#world','#mc','#tr'];
-bn.innerHTML=H.map((h,i)=>`<a href="${h}"><svg viewBox="0 0 24 24"><path d="${I[i]}"/></svg>${t.bn[i]}</a>`).join('');
-lg.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.l==lang))}
-lg.onclick=e=>{const b=e.target.closest('[data-l]');if(b){lang=b.dataset.l;ui()}};
-nv.onclick=e=>{const a=e.target.closest('[data-lg]');if(a){LG=a.dataset.lg;TB='ALL';drawM()}};
-addEventListener('scroll',()=>hd.classList.toggle('s',scrollY>30),{passive:true});
-const tz=Intl.DateTimeFormat().resolvedOptions().timeZone,ft=i=>new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZone:tz}).format(new Date(i));
-const mono=n=>n.replace(/[^A-Za-zÀ-ÿ ]/g,'').split(' ').map((w,i,a)=>a.length>1?w[0]:w.slice(0,3)).join('').slice(0,3).toUpperCase();
-/* NEWS (sourced or from data feed) */
-const N=[{c:'Champions League',t:'Europe’s big night: Arsenal host Lille, Barcelona visit Galatasaray',x:'Nine of ten fixtures kick off on Tuesday 13 October, with Feyenoord v Como a day later. Inter face Club Brugge, Bayern travel to Viking and Atlético meet Manchester United.',a:'TIMASLA Desk',d:'11 Oct 2026',r:'3 min',u:'#mc',f:1},
-{c:'Champions League',t:'Flick warns of Osimhen threat ahead of Galatasaray trip',x:'Barcelona’s coach called him a “fantastic striker” and said his side must be at their best.',a:'Complete Sports',d:'11 Oct 2026',r:'2 min',u:'https://completesports.com/ucl-barcelona-coach-wary-of-fantastic-striker-osimhen-ahead-of-galatasaray-clash'},
-{c:'Premier League',t:'Chelsea hammer Bournemouth 5–1 as Arsenal edge Leeds',x:'A big Saturday in England, with Man United and Spurs sharing a 1–1 draw.',a:'SportRadar',d:'10 Oct 2026',r:'1 min',u:'#mc'},
-{c:'Transfers',t:'Bayern make Moroccan midfielder Ismael Saibari’s signing official',x:'The deal runs to 2031, according to BeSoccer’s summer transfer log.',a:'BeSoccer',d:'1 Jul 2026',r:'1 min',u:'https://www.besoccer.com/new/latest-transfer-news-football-rumours-confirmed-1412436'},
-{c:'World Cup',t:'Archive: Morocco beat Canada 3–0 to reach World Cup quarter-finals',x:'Azzedine Ounahi scored twice and Sofiane Rahimi added a stoppage-time third.',a:'MAP Sport',d:'Jul 2026',r:'1 min',u:'https://mapsport.ma/'},
-{c:'African football',t:'Morocco open futsal Africa Cup of Nations against Algeria in Rabat',x:'Coach Hicham Dakik says defending the title is the priority; kick-off is Monday 12 October.',a:'Almountakhab',d:'11 Oct 2026',r:'1 min',u:'https://almountakhab.com/node/13231499'}];
-const L=n=>`<a ${n.u[0]=='#'?'':'target="_blank" rel="noopener"'} href="${n.u}"`;
-ng.innerHTML=`${L(N[0])} class="fs glass"><div class="art"></div><div class="tx"><span class="k">${N[0].c}</span><h3>${N[0].t}</h3><p class="d" style="font-size:15px;color:#b9c0cc">${N[0].x}</p><p class="d" style="margin-top:14px">${N[0].a} · ${N[0].d} · ${N[0].r} read</p></div></a>
-<div class="sg">${N.slice(1).map(n=>`${L(n)} class="cd glass"><span class="k">${n.c}</span><h3>${n.t}</h3><p class="d">${n.a} · ${n.d} · ${n.r}</p></a>`).join('')}</div>`;
-/* WORLD */
-const C=[['Real Madrid','Won 1–0 v Villarreal','La Liga · 10 Oct'],['Barcelona','Won 3–0 v Getafe','La Liga · next: Betis, 17 Oct'],['Manchester City','0–0 v Liverpool at capture*','Premier League · 11 Oct'],['Liverpool','0–0 v Man City at capture*','Premier League · 11 Oct'],['PSG','Won 3–1 v Le Mans','Ligue 1 · 10 Oct'],['Bayern Munich','Drew 2–2 at Augsburg','Bundesliga · 10 Oct'],['Inter Milan','Host Parma at San Siro','Serie A · CBS Sports'],['AC Milan','Pulisic fit and scoring again','Serie A · CBS Sports']];
-cg.innerHTML=C.map(c=>`<div class="cl glass"><div class="cr">${mono(c[0])}</div><h3>${c[0]}</h3><p>${c[1]}</p><p class="d" style="margin-top:6px">${c[2]}</p></div>`).join('');
-/* MATCHES [lg,home,away,hs,as,ISO,status,stadium] */
-const M=[['PL','Liverpool','Man City',0,0,'2026-10-11T15:30Z','LIVE','Anfield'],['LL','Real Betis','Osasuna',0,0,'2026-10-11T16:30Z','LIVE','Benito Villamarín'],['BL','Freiburg','Schalke',1,1,'2026-10-11T15:30Z','LIVE','Europa-Park Stadion'],['L1','Rennes','Auxerre',2,1,'2026-10-11T15:15Z','LIVE','Roazhon Park'],
-['PL','Chelsea','Bournemouth',5,1,'2026-10-10T14:00Z','FT'],['PL','Arsenal','Leeds',2,1,'2026-10-10T11:30Z','FT'],['PL','Man United','Tottenham',1,1,'2026-10-10T16:30Z','FT'],['PL','Crystal Palace','Nott\'m Forest',3,1,'2026-10-11T13:00Z','FT'],['PL','Hull City','Everton',2,2,'2026-10-11T13:00Z','FT'],
-['LL','Real Madrid','Villarreal',1,0,'2026-10-10T19:00Z','FT'],['LL','Barcelona','Getafe',3,0,'2026-10-10T16:30Z','FT'],['LL','Alavés','Atlético Madrid',1,2,'2026-10-10T14:15Z','FT'],['LL','Real Sociedad','Deportivo',3,2,'2026-10-11T14:15Z','FT'],
-['BL','Mainz','Leverkusen',3,4,'2026-10-10T13:30Z','FT'],['BL','RB Leipzig','Frankfurt',6,0,'2026-10-10T16:30Z','FT'],['BL','Augsburg','Bayern Munich',2,2,'2026-10-10T13:30Z','FT'],['BL','Dortmund','Werder Bremen',2,2,'2026-10-09T18:30Z','FT'],['BL','Köln','Gladbach',2,1,'2026-10-11T13:30Z','FT'],
-['L1','PSG','Le Mans',3,1,'2026-10-10T18:45Z','FT'],['L1','Brest','Angers',5,1,'2026-10-10T18:45Z','FT'],['L1','Lens','Lyon',2,1,'2026-10-09T18:45Z','FT'],['L1','Nice','Strasbourg',2,1,'2026-10-11T13:00Z','FT'],['L1','Monaco','Toulouse',2,2,'2026-10-10T18:45Z','FT'],
-['UCL','PSG','Slovan Bratislava',6,1,'2026-09-09T19:00Z','FT'],['UCL','Bayern Munich','Bodø/Glimt',5,0,'2026-09-10T19:00Z','FT'],['UCL','Man United','Sabah',4,0,'2026-09-10T19:00Z','FT'],
-['UCL','Arsenal','Lille',,,'2026-10-13T19:00Z','NS','Emirates Stadium'],['UCL','Atlético Madrid','Man United',,,'2026-10-13T19:00Z','NS','Metropolitano'],['UCL','Inter','Club Brugge',,,'2026-10-13T19:00Z','NS','San Siro'],['UCL','Galatasaray','Barcelona',,,'2026-10-13T19:00Z','NS'],['UCL','Viking','Bayern Munich',,,'2026-10-13T19:00Z','NS'],['UCL','Villarreal','Napoli',,,'2026-10-13T19:00Z','NS'],
-['PL','Coventry','Newcastle',,,'2026-10-12T19:00Z','NS'],['PL','Brentford','Liverpool',,,'2026-10-17T14:00Z','NS'],['PL','Man City','Ipswich',,,'2026-10-17T14:00Z','NS'],
-['LL','Racing Santander','Valencia',,,'2026-10-11T19:00Z','NS'],['LL','Real Betis','Barcelona',,,'2026-10-17T16:30Z','NS'],['LL','Espanyol','Atlético Madrid',,,'2026-10-17T12:00Z','NS'],
-['BL','Frankfurt','Köln',,,'2026-10-16T18:30Z','NS'],['BL','Union Berlin','Dortmund',,,'2026-10-17T13:30Z','NS'],['BL','Bayern Munich','RB Leipzig',,,'2026-10-17T16:30Z','NS'],
-['L1','Troyes','Marseille',,,'2026-10-11T18:45Z','NS'],['L1','Strasbourg','PSG',,,'2026-10-17T15:15Z','NS'],['L1','Lyon','Nice',,,'2026-10-18T18:45Z','NS']];
-const LGN={ALL:'All',UCL:'Champions League',PL:'Premier League',LL:'La Liga',BL:'Bundesliga',L1:'Ligue 1'},TBN={LIVE:'Live*',FT:'Results',NS:'Upcoming',ALL:'All'};
-mu.textContent='Kick-offs in your time zone · '+tz;
-function drawM(){lc.innerHTML=Object.entries(LGN).map(([k,v])=>`<button class="ch ${k==LG?'on':''}" data-g="${k}">${v}</button>`).join('');
-tb.innerHTML=Object.entries(TBN).map(([k,v])=>`<button class="ch ${k==TB?'on':''}" data-b="${k}">${v}</button>`).join('');
-const r=M.filter(m=>(LG=='ALL'||m[0]==LG)&&(TB=='ALL'||m[6]==TB));
-sd.innerHTML=r.length?r.map(m=>`<div class="mc glass"><div class="mt"><span>${LGN[m[0]]||esc(m[0])}</span>${m[6]=='LIVE'?'<span class="lv">LIVE'+(m[8]?' · '+m[8]+"'":'*')+'</span>':`<span>${m[6]=='FT'?'FT':ft(m[5])}</span>`}</div>
-<div class="tr"><div class="cr">${mono(m[1])}</div><span>${esc(m[1])}</span><b>${m[3]??'–'}</b></div><div class="tr"><div class="cr">${mono(m[2])}</div><span>${esc(m[2])}</span><b>${m[4]??'–'}</b></div>${m[7]?`<p class="st">${esc(m[7])}</p>`:''}</div>`).join(''):'<div class="empty glass" style="grid-column:1/-1;border-radius:22px">No matches in this view.</div>'}
-lc.onclick=e=>{const b=e.target.closest('[data-g]');if(b){LG=b.dataset.g;drawM()}};tb.onclick=e=>{const b=e.target.closest('[data-b]');if(b){TB=b.dataset.b;drawM()}};drawM();
-/* TRANSFERS: Official only with a named source; Reported/Rumour clearly labelled */
-const TR=[['Ismael Saibari','Moroccan international','Bayern Munich','O','Contract to 2031 · BeSoccer · 1 Jul 2026'],['Sandro Tonali','Newcastle','Tottenham','O','BeSoccer · 6 Jul 2026'],['Marco Palestra','Atalanta','Chelsea','O','Contract to 2033 · BeSoccer · 30 Jun 2026'],['Nathan Aké','Man City','Fenerbahçe','O','BeSoccer · 3 Jul 2026'],['Youssef En-Nesyri','Al-Ittihad','Destination unknown','U','Okaz report, Jul 2026 · no club confirmation']];
-const BN={O:'Official',R:'Reported',U:'Rumour'};let TF='ALL';
-function drawT(){tfc.innerHTML=[['ALL','All'],['O','Official'],['R','Reported'],['U','Rumour']].map(([k,v])=>`<button class="ch ${k==TF?'on':''}" data-f="${k}">${v}</button>`).join('');
-const r=TR.filter(t=>TF=='ALL'||t[3]==TF);tg.innerHTML=r.length?r.map(t=>`<div class="tc glass"><div class="av">${mono(t[0])}</div><h3>${t[0]}</h3><div class="rt"><span>${t[1]}</span><i>→</i><span>${t[2]}</span></div><span class="bd ${t[3]}">${BN[t[3]]}</span><p class="d" style="margin-top:12px">${t[4]}</p></div>`).join(''):'<div class="empty glass" style="grid-column:1/-1;border-radius:22px">No verified reports in this category right now.</div>'}
-tfc.onclick=e=>{const b=e.target.closest('[data-f]');if(b){TF=b.dataset.f;drawT()}};drawT();
-const A=[['Tactical analysis','How new referee rules are transforming Serie A this season','Francesco Porzio · CBS Sports · 9 Oct 2026'],['Rankings','Serie A power rankings: Inter and Roma on top, AC Milan back on track','CBS Sports · Sept 2026'],['Expert opinion','Hot takes: could Juventus sack Luciano Spalletti?','Francesco Porzio · CBS Sports']];
-ag.innerHTML=A.map(a=>`<a class="ac glass" target="_blank" rel="noopener" href="https://www.cbssports.com/soccer/serie-a/"><div><span class="k">${a[0]}</span><h3>${a[1]}</h3></div><p class="d">${a[2]}</p></a>`).join('');
-/* SEARCH */
-const IX=[...N.map(n=>[n.t,n.u]),...C.map(c=>[c[0]+' — '+c[1],'#world']),...TR.map(t=>[t[0]+' → '+t[2],'#tr']),...M.map(m=>[m[1]+' v '+m[2],'#mc'])];
-sb.onclick=()=>{so.classList.add('on');si.focus()};so.onclick=e=>{if(e.target==so)so.classList.remove('on')};addEventListener('keydown',e=>{if(e.key=='Escape')so.classList.remove('on')});
-si.oninput=()=>{const q=si.value.trim().toLowerCase();sr.innerHTML=q.length<2?'':IX.filter(x=>x[0].toLowerCase().includes(q)).slice(0,10).map(x=>`<a href="${x[1]}" ${x[1][0]!='#'?'target="_blank" rel="noopener"':''}>${esc(x[0])}</a>`).join('')||'<p class="d">No results.</p>'};
-sr.onclick=e=>{if(e.target.closest('a[href^="#"]'))so.classList.remove('on')};
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.rv').forEach(e=>io.observe(e));ui();
+    a { color: inherit; }
 
-const SUN='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',MOON='<svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>';
-function setT(t){document.documentElement.dataset.theme=t;th.innerHTML=t=='light'?MOON:SUN;th.title=t=='light'?'Night mode':'Day mode';try{localStorage.setItem('tm_theme',t)}catch(e){}}
-th.onclick=()=>setT(document.documentElement.dataset.theme=='light'?'dark':'light');
-th.innerHTML=document.documentElement.dataset.theme=='light'?MOON:SUN;
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 18px 6%;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      z-index: 10;
+    }
+    .logo { font-weight: 800; font-size: 1.25rem; color: var(--primary); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; font-weight: 500; color: var(--text); }
+    .nav-links a:hover { color: var(--primary); }
 
-/* LIVE: polls /api/live (server proxy). If it is missing or fails, the dated snapshot stays and nothing is invented. */
-const LK={'Premier League':'PL','La Liga':'LL','Bundesliga':'BL','Ligue 1':'L1','UEFA Champions League':'UCL'};
-async function pollLive(){if(document.hidden||location.protocol=='file:')return;
-try{const r=await fetch('/api/live',{cache:'no-store'});if(!r.ok)throw 0;const j=await r.json();if(j.error)throw 0;
-for(let i=M.length-1;i>=0;i--)if(M[i][6]=='LIVE')M.splice(i,1);
-j.items.reverse().forEach(x=>M.unshift([LK[x.league]||x.league,x.home,x.away,x.hs,x.as,j.updated,'LIVE',x.venue||'',x.minute]));
-mu.textContent='Live · updated '+new Date(j.updated).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:tz})+' · '+tz;drawM();drawF();drawR()}catch(e){}}
-setInterval(pollLive,30000);document.addEventListener('visibilitychange',pollLive);pollLive();
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+    .btn:hover { background: var(--primary-dark); }
+    .btn-small { padding: 10px 18px; font-size: 0.95rem; }
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .btn-outline:hover { background: var(--accent-bg); }
 
-const AS=new URLSearchParams(location.search).get('asof'),T0=Date.now(),B0=AS?new Date(AS).getTime():T0,NOW=()=>B0+(Date.now()-T0);
-/* NEXT UP: countdowns to confirmed fixtures/events. Morocco kick-offs use UTC+1 as published. Past items drop out. */
-const NU=[{c:'African football',t:'Futsal AFCON · Morocco v Algeria',s:'Rabat · 20:00 Morocco time',at:'2026-10-12T20:00:00+01:00'},{c:'Champions League',t:'Arsenal v Lille',s:'Emirates Stadium',at:'2026-10-13T19:00:00Z'},{c:'World Cup',t:'U-17 Women’s World Cup · Morocco v New Zealand',s:'The hosts open their campaign',at:'2026-10-17T18:00:00+01:00'},{c:'Awards',t:'Ballon d’Or ceremony',s:'London · date only, time not confirmed',at:'2026-10-26T00:00:00Z',day:1}];
-const nowMs=NOW(),UP=NU.filter(n=>new Date(n.at)>nowMs);
-if(!UP.length)nuc.innerHTML='<div class="empty glass" style="grid-column:1/-1;border-radius:22px">All dates in this edition have passed. <a href="?asof=2026-10-11T18:00:00Z" style="color:var(--g);font-weight:600">Preview as of 11 Oct 2026 →</a></div>';
-nuc.innerHTML=UP.map(n=>`<div class="nc glass"><span class="k">${n.c}</span><h3>${n.t}</h3><p class="d">${n.s}</p><div class="cdn" data-at="${n.at}" ${n.day?'data-day=1':''}></div></div>`).join('');
-const z=n=>String(n).padStart(2,'0');
-function tick(){const now=NOW();nuc.querySelectorAll('[data-at]').forEach(e=>{const d=new Date(e.dataset.at)-now;if(d<=0){e.textContent='Started';return}
-const D=Math.floor(d/864e5),H=Math.floor(d%864e5/36e5),Mi=Math.floor(d%36e5/6e4),S=Math.floor(d%6e4/1e3);
-e.innerHTML=e.dataset.day?`<b>${D}</b><i>days to go</i>`:`<b>${D}</b><i>d</i><b>${z(H)}</b><i>h</i><b>${z(Mi)}</b><i>m</i><b>${z(S)}</b><i>s</i>`})}
-tick();setInterval(tick,1000);
-/* FOR YOU: follow clubs (stored locally); shows their matches and headlines that mention them */
-const TM=['Real Madrid','Barcelona','Man City','Liverpool','PSG','Bayern Munich','Inter','Arsenal','Chelsea','Man United','Atlético Madrid','Dortmund','Napoli'];
-let FOL=[];try{FOL=JSON.parse(localStorage.getItem('tm_teams')||'[]')}catch(e){}
-const ORD={LIVE:0,NS:1,FT:2};
-const card=m=>`<div class="mc glass"><div class="mt"><span>${LGN[m[0]]||esc(m[0])}</span>${m[6]=='LIVE'?'<span class="lv">LIVE'+(m[8]?' · '+m[8]+"'":'*')+'</span>':`<span>${m[6]=='FT'?'FT':ft(m[5])}</span>`}</div><div class="tr"><div class="cr">${mono(m[1])}</div><span>${esc(m[1])}</span><b>${m[3]??'–'}</b></div><div class="tr"><div class="cr">${mono(m[2])}</div><span>${esc(m[2])}</span><b>${m[4]??'–'}</b></div></div>`;
-function drawF(){fch.innerHTML=TM.map(t=>`<button class="ch ${FOL.includes(t)?'on':''}" data-tm="${esc(t)}">${esc(t)}</button>`).join('');
-if(!FOL.length){fd.innerHTML='<div class="empty glass" style="grid-column:1/-1;border-radius:22px">Pick the clubs you follow and their matches and headlines gather here.</div>';fn.innerHTML='';return}
-const r=M.filter(m=>FOL.includes(m[1])||FOL.includes(m[2])).sort((a,b)=>ORD[a[6]]-ORD[b[6]]||(a[6]=='FT'?new Date(b[5])-new Date(a[5]):new Date(a[5])-new Date(b[5])));
-fd.innerHTML=r.length?r.map(card).join(''):'<div class="empty glass" style="grid-column:1/-1;border-radius:22px">No matches for these clubs in this snapshot.</div>';
-const h=N.filter(n=>FOL.some(t=>n.t.toLowerCase().includes(t.toLowerCase())));fn.innerHTML=h.map(n=>`<a ${n.u[0]=='#'?'':'target="_blank" rel="noopener"'} href="${n.u}">${esc(n.t)}<span>${esc(n.a)} · ${esc(n.d)}</span></a>`).join('')}
-fch.onclick=e=>{const b=e.target.closest('[data-tm]');if(!b)return;const t=b.dataset.tm;FOL=FOL.includes(t)?FOL.filter(x=>x!=t):[...FOL,t];try{localStorage.setItem('tm_teams',JSON.stringify(FOL))}catch(x){}drawF();drawR()};drawF();
-/* keyboard: / or Ctrl/Cmd+K opens search */
-addEventListener('keydown',e=>{const typing=/input|textarea/i.test(document.activeElement.tagName);if((e.key=='k'&&(e.metaKey||e.ctrlKey))||(e.key=='/'&&!typing)){e.preventDefault();sb.click()}});
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 100px 6% 90px;
+      background: linear-gradient(180deg, var(--accent-bg) 0%, #ffffff 100%);
+    }
+    .badge {
+      display: inline-block;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.75rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      max-width: 860px;
+      margin: 0 auto 22px;
+    }
+    .hero p {
+      font-size: clamp(1.02rem, 2vw, 1.2rem);
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 38px;
+    }
+    .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hero-note { margin-top: 18px; font-size: 0.9rem; color: #64748b; }
 
-/* KICKOFF RADAR: upcoming/live fixtures on a time axis, stacked so simultaneous kick-offs never overlap */
-function drawR(){const now=NOW(),H=36e5,st=now-2*H,en=st+100*H,W=1500,PW=170,x=t=>(t-st)/(en-st)*W;
-const L=['UCL','PL','LL','BL','L1'],f=M.filter(m=>(m[6]=='NS'||m[6]=='LIVE')&&new Date(m[5])>=st&&new Date(m[5])<en);
-if(!f.length){rd.style.display='none';return}rd.style.display='';
-let h='',y=34;const first=Math.ceil(st/(12*H))*12*H;
-for(let t=first;t<en;t+=12*H)h+=`<div class="tk" style="left:${x(t)}px">${new Date(t).toLocaleString('en-GB',{weekday:'short',hour:'2-digit',minute:'2-digit',timeZone:tz})}</div>`;
-h+=`<div class="nw" style="left:${x(now)}px"><span>NOW</span></div>`;
-L.forEach(k=>{const ms=f.filter(m=>m[0]==k).sort((a,b)=>new Date(a[5])-new Date(b[5]));if(!ms.length)return;const rows=[];
-h+=`<div class="ln" style="top:${y-2}px">${LGN[k]}</div>`;
-ms.forEach(m=>{const l=x(new Date(m[5]));let r=rows.findIndex(e=>e+8<=l);if(r<0){r=rows.length;rows.push(0)}rows[r]=l+PW;
-h+=`<div class="pp ${FOL.includes(m[1])||FOL.includes(m[2])?'fo':''} ${m[6]=='LIVE'?'lv2':''}" style="left:${l}px;top:${y+18+r*46}px" title="${esc(m[1])} v ${esc(m[2])}">${esc(m[1])} <i>v</i> ${esc(m[2])}<small>${m[6]=='LIVE'?'LIVE':ft(m[5])}</small></div>`});
-y+=18+rows.length*46+22});
-rdi.style.width=W+'px';rdi.style.height=y+'px';rdi.innerHTML=h}
-drawR();
-/* MOROCCO HUB */
-const MN=[N[5],{c:'World Cup',t:'Morocco hosts the U-17 Women’s World Cup, 17 Oct – 7 Nov',a:'Wikipedia',d:'2026',u:'https://en.wikipedia.org/wiki/2026_FIFA_U-17_Women%27s_World_Cup'},{c:'National teams',t:'Federation hands the youth national teams to a new French coach',a:'sport7.ma',d:'10 Oct 2026',u:'https://sport7.ma/'},{c:'Rankings',t:'Morocco’s FIFA ranking moves after the match against Mali',a:'Kooora',d:'4 Oct 2026',u:'https://www.kooora.com/'},N[4]];
-mhn.innerHTML=`<span class="k">Latest</span>`+MN.map(n=>`<a class="mr2" ${n.u[0]=='#'?'':'target="_blank" rel="noopener"'} href="${n.u}"><span class="d">${esc(n.c)}</span><h3>${esc(n.t)}</h3><span class="d">${esc(n.a)} · ${esc(n.d)}</span></a>`).join('');
-mhd.innerHTML=`<span class="k">Next dates</span>`+(UP.filter(n=>/Morocco/.test(n.t)).map(n=>`<div class="pa"><div><b>${esc(n.t)}</b><span class="d">${new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZone:tz}).format(new Date(n.at))} · your time</span></div></div>`).join('')||'<p class="d" style="margin-top:10px">No upcoming Morocco dates in this edition.</p>');
-mhp.innerHTML=`<span class="k">Players abroad</span>`+TR.filter(t=>/Saibari|En-Nesyri/.test(t[0])).map(t=>`<div class="pa"><div class="av">${mono(t[0])}</div><div><b>${esc(t[0])}</b><span class="d">${esc(t[1])} → ${esc(t[2])}</span><span class="bd ${t[3]}" style="margin-top:6px">${BN[t[3]]}</span></div></div>`).join('');
-/* SHARE CARDS: tap any match card -> 1080x1350 PNG (share sheet on phones, download elsewhere) */
-const cx=cv.getContext('2d');
-function fit(t,w,px,wt){let n=px;do{cx.font=`${wt} ${n}px Inter,'IBM Plex Sans Arabic',sans-serif`;n-=2}while(cx.measureText(t).width>w&&n>18)}
-async function card2(d){try{await document.fonts.load('800 60px Inter')}catch(e){}
-const W=1080,H=1350,c=cx;let g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#05070b');g.addColorStop(1,'#0b1a12');c.fillStyle=g;c.fillRect(0,0,W,H);
-g=c.createRadialGradient(W*.82,110,10,W*.82,110,720);g.addColorStop(0,'rgba(48,224,122,.38)');g.addColorStop(1,'rgba(48,224,122,0)');c.fillStyle=g;c.fillRect(0,0,W,H);
-c.strokeStyle='rgba(255,255,255,.16)';c.lineWidth=2;c.beginPath();c.roundRect?c.roundRect(60,60,W-120,H-120,56):c.rect(60,60,W-120,H-120);c.stroke();
-c.textAlign='center';c.fillStyle='#30E07A';fit(d.comp.toUpperCase(),800,36,700);c.fillText(d.comp.toUpperCase(),W/2,190);
-c.fillStyle='#8E95A3';fit(d.st,800,30,600);c.fillText(d.st,W/2,240);
-[[d.a,270],[d.b,810]].forEach(([t,xx])=>{c.fillStyle='rgba(255,255,255,.08)';c.beginPath();c.arc(xx,520,100,0,7);c.fill();c.strokeStyle='rgba(255,255,255,.22)';c.stroke();
-c.fillStyle='#fff';fit(mono(t),150,52,800);c.fillText(mono(t),xx,540);fit(t,400,48,700);c.fillText(t,xx,700)});
-c.fillStyle='#fff';const sc=d.sa=='–'?'v':d.sa+' – '+d.sb;fit(sc,300,150,800);c.fillText(sc,W/2,570);
-c.fillStyle='#fff';c.font='800 58px Inter';c.fillText('TIM',W/2-70,1150);c.fillStyle='#30E07A';c.fillText('ASLA',W/2+78,1150);
-c.fillStyle='#8E95A3';c.font='500 26px Inter';c.fillText('All football news in one place',W/2,1200);dlb.href=cv.toDataURL('image/png')}
-document.addEventListener('click',e=>{const el=e.target.closest('.mc');if(!el)return;const n=[...el.querySelectorAll('.tr span')].map(x=>x.textContent),b=[...el.querySelectorAll('.tr b')].map(x=>x.textContent),m=[...el.querySelectorAll('.mt span')].map(x=>x.textContent);
-card2({comp:m[0]||'',st:(m[1]||'').replace('*',''),a:n[0],b:n[1],sa:b[0],sb:b[1]}).then(()=>sc2.classList.add('on'))});
-sc2.onclick=e=>{if(e.target==sc2||e.target.parentElement==sc2)sc2.classList.remove('on')};
-shb.onclick=()=>cv.toBlob(async bl=>{const f=new File([bl],'timasla-match.png',{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:'TIMASLA'})}catch(x){}}else dlb.click()});
-addEventListener('keydown',e=>{if(e.key=='Escape')sc2.classList.remove('on')});
+    /* Sections */
+    section { padding: 90px 6%; }
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 56px;
+      font-size: 1.05rem;
+    }
 
-/* PREDICT & WIN (local until accounts exist): 3 pts exact score, 1 pt correct result; settles when a final score appears in the data */
-const PK=m=>m[1]+'|'+m[2]+'|'+m[5].slice(0,10),GR=(p,m)=>p[0]==m[3]&&p[1]==m[4]?3:Math.sign(p[0]-p[1])==Math.sign(m[3]-m[4])?1:0;
-let PR={};try{PR=JSON.parse(localStorage.getItem('tm_pred')||'{}')}catch(e){}
-const isF=m=>FOL.includes(m[1])||FOL.includes(m[2]);
-function drawPS(){const done=Object.entries(PR).map(([k,p])=>{const m=M.find(x=>PK(x)==k&&x[6]=='FT');return m&&{m,p,pt:GR(p,m)}}).filter(Boolean);
-const tot=done.reduce((a,d)=>a+d.pt,0),ex=done.filter(d=>d.pt==3).length;
-prs.innerHTML=`<span class="k">Your score</span><div class="big">${tot}<span style="font-size:15px;font-weight:600;color:var(--mu)"> pts</span></div><p class="d">${done.length} settled · ${ex} exact · ${Object.keys(PR).length} made</p>`+done.slice(0,4).map(d=>`<div class="pa"><div><b>${esc(d.m[1])} ${d.m[3]}–${d.m[4]} ${esc(d.m[2])}</b><span class="d">You: ${d.p[0]}–${d.p[1]} · +${d.pt}</span></div></div>`).join('')+'<p class="d" style="margin-top:12px">Leaderboard against other fans arrives with accounts (Supabase). Until then scores stay on this device.</p>'}
-function drawP(){const up=M.filter(m=>m[6]=='NS'&&new Date(m[5])>NOW()).sort((a,b)=>isF(b)-isF(a)||new Date(a[5])-new Date(b[5])).slice(0,8);
-prl.innerHTML='<span class="k">Upcoming · locks at kick-off</span>'+(up.length?up.map(m=>{const p=PR[PK(m)]||['',''];return `<div class="pr"><span>${esc(m[1])}</span><div class="sp"><input type="number" min="0" max="30" inputmode="numeric" aria-label="${esc(m[1])} goals" data-k="${esc(PK(m))}" data-i="0" value="${p[0]}"><b>–</b><input type="number" min="0" max="30" inputmode="numeric" aria-label="${esc(m[2])} goals" data-k="${esc(PK(m))}" data-i="1" value="${p[1]}"></div><span>${esc(m[2])}</span></div>`}).join(''):'<p class="d" style="margin-top:10px">No upcoming fixtures in this edition.</p>');drawPS()}
-const PT={};prl.addEventListener('change',e=>{const i=e.target,k=i.dataset.k;if(!k)return;const c=PT[k]||(PT[k]=(PR[k]||['','']).slice());c[+i.dataset.i]=i.value===''?'':Math.max(0,Math.min(30,parseInt(i.value)||0));
-if(c[0]!==''&&c[1]!==''){PR[k]=[+c[0],+c[1]];try{localStorage.setItem('tm_pred',JSON.stringify(PR))}catch(x){}drawPS()}});
-drawP();
-/* FAN POLL: vote saved locally; community % shown only if /api/polls returns real counts */
-const POLL={id:'ucl-2026-10-13-gal-bar',q:'Galatasaray v Barcelona: who takes it?',o:['Galatasaray','Draw','Barcelona'],end:'2026-10-13T19:00:00Z'};
-let VT=null,VID='';try{VT=localStorage.getItem('tm_vote_'+POLL.id);VID=localStorage.getItem('tm_voter')||(crypto.randomUUID?crypto.randomUUID():'');localStorage.setItem('tm_voter',VID)}catch(e){}
-async function drawPoll(){let cnt=null;if(location.protocol!='file:'){try{const r=await fetch('/api/polls?id='+POLL.id);const j=await r.json();if(j.counts&&j.counts.length)cnt=j.counts}catch(e){}}
-const tot=cnt?cnt.reduce((a,c)=>a+Number(c.votes),0):0;
-pol.innerHTML=`<span class="k">Fan poll</span><h3 style="margin:6px 0 4px;font-size:16px">${POLL.q}</h3><div class="po">`+POLL.o.map(o=>{const v=cnt?(cnt.find(c=>c.option==o)||{votes:0}).votes:0,pc=tot?Math.round(v/tot*100):0,sh=VT&&cnt;return `<button data-o="${o}" class="${VT==o?'on':''}">${sh?`<i class="bar" style="width:${pc}%"></i>`:''}<span>${o}${sh?' · '+pc+'%':''}</span></button>`}).join('')+`</div><p class="d" style="margin-top:10px">${VT?(cnt?tot+' votes':'Vote saved. Community results show once the poll feed is live.'):'One vote per device.'}</p>`}
-if(new Date(POLL.end)<NOW())pol.style.display='none';else{pol.onclick=async e=>{const b=e.target.closest('[data-o]');if(!b||VT)return;VT=b.dataset.o;try{localStorage.setItem('tm_vote_'+POLL.id,VT)}catch(x){}
-if(location.protocol!='file:'&&VID)try{await fetch('/api/polls',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({id:POLL.id,voter:VID,option:VT})})}catch(x){}drawPoll()};drawPoll()}
-/* STANDINGS via /api/standings; honest empty state otherwise */
-const SC=[['PL','Premier League'],['PD','La Liga'],['BL1','Bundesliga'],['SA','Serie A'],['FL1','Ligue 1']];let SK='PL';
-async function drawS(){stc.innerHTML=SC.map(([k,v])=>`<button class="ch ${k==SK?'on':''}" data-s="${k}">${v}</button>`).join('');
-try{if(location.protocol=='file:')throw 0;const r=await fetch('/api/standings?c='+SK);if(!r.ok)throw 0;const j=await r.json();if(!j.rows||!j.rows.length)throw 0;
-stb.innerHTML=`<table class="t2"><tr><th>#</th><th>Club</th><th>P</th><th>GD</th><th>Pts</th></tr>${j.rows.map(r=>`<tr><td>${r.pos}</td><td>${esc(r.team)}</td><td>${r.played}</td><td>${r.gd}</td><td><b>${r.pts}</b></td></tr>`).join('')}</table><p class="d" style="padding:8px 0 12px">Source: football-data.org · updated ${new Date(j.updated).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:tz})}</p>`}
-catch(e){stb.innerHTML='<div class="empty">Standings appear here once FOOTBALL_DATA_API_KEY is set on the server. No table is shown from memory.</div>'}}
-stc.onclick=e=>{const b=e.target.closest('[data-s]');if(b){SK=b.dataset.s;drawS()}};drawS();
-/* CALENDAR EXPORT: followed clubs' upcoming fixtures -> .ics (works offline, no account) */
-ics.onclick=()=>{const up=M.filter(m=>m[6]=='NS'&&new Date(m[5])>NOW()&&isF(m));const lab=ics.textContent;
-if(!up.length){ics.textContent='Follow a club that has upcoming fixtures first';setTimeout(()=>ics.textContent=lab,2500);return}
-const f=d=>new Date(d).toISOString().replace(/[-:]/g,'').replace(/\.\d+/,'');
-const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TIMASLA//EN',...up.flatMap(m=>['BEGIN:VEVENT','UID:'+PK(m).replace(/\W/g,'')+'@timasla','DTSTAMP:'+f(NOW()),'DTSTART:'+f(m[5]),'DTEND:'+f(new Date(m[5]).getTime()+72e5),'SUMMARY:'+m[1]+' v '+m[2]+' ('+(LGN[m[0]]||m[0])+')','END:VEVENT']),'END:VCALENDAR'];
-const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([L.join('\r\n')],{type:'text/calendar'}));a.download='timasla-fixtures.ics';a.click()};
-</script></body></html>
+    /* Problem */
+    .problem { background: var(--bg-soft); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .problem-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 26px;
+    }
+    .problem-item h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .problem-item p { color: var(--muted); font-size: 0.97rem; }
+
+    /* Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .card:hover { box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); transform: translateY(-3px); }
+    .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: var(--accent-bg);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .card p { color: var(--muted); }
+
+    /* How it works */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+      max-width: 1000px;
+      margin: 0 auto;
+      counter-reset: step;
+    }
+    .step { text-align: center; }
+    .step-number {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+    .step h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 0.97rem; }
+
+    /* Final CTA */
+    .cta {
+      background: var(--primary);
+      color: #ffffff;
+      text-align: center;
+      border-radius: 24px;
+      margin: 0 6% 90px;
+      padding: 70px 6%;
+    }
+    .cta h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-bottom: 14px; }
+    .cta p { opacity: 0.9; max-width: 560px; margin: 0 auto 32px; }
+    .cta .btn { background: #ffffff; color: var(--primary); }
+    .cta .btn:hover { background: var(--accent-bg); }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 6%;
+      color: #64748b;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      nav { justify-content: center; text-align: center; }
+      .nav-links { justify-content: center; gap: 14px; }
+      .hero { padding: 70px 6% 60px; }
+      section { padding: 64px 6%; }
+      .cta { margin-bottom: 64px; border-radius: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">RevisionGate</a>
+    <div class="nav-links">
+      <a href="#problem">Why</a>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#" class="btn btn-small">Get Started</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="badge">Built for freelance video editors</span>
+    <h1>Stop Losing Time to Endless Client Revisions.</h1>
+    <p>Organize feedback, protect your project scope, and get approval for extra work, all in one place.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn">Start Free</a>
+      <a href="#how" class="btn btn-outline">See How It Works</a>
+    </div>
+    <p class="hero-note">No credit card required.</p>
+  </header>
+
+  <section class="problem" id="problem">
+    <h2 class="section-title">Client feedback is scattered everywhere</h2>
+    <p class="section-subtitle">Emails, WhatsApp messages, and documents pile up. Requests contradict each other, repeat, or quietly grow beyond what you agreed to.</p>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <h3>Feedback in 5 places</h3>
+        <p>Important instructions get buried in emails, chats, and files you have to search through every time.</p>
+      </div>
+      <div class="problem-item">
+        <h3>Contradictory notes</h3>
+        <p>One message says shorter, another says add more. You only find out after you've already edited.</p>
+      </div>
+      <div class="problem-item">
+        <h3>Silent scope creep</h3>
+        <p>Small extra requests add up to hours of unpaid work that nobody agreed to.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2 class="section-title">Everything you need to protect your time</h2>
+    <p class="section-subtitle">Turn every piece of feedback into a clear, trackable decision.</p>
+    <div class="features-grid">
+      <div class="card">
+        <div class="icon">01</div>
+        <h3>Organized Feedback Inbox</h3>
+        <p>Paste client messages from any source and keep them tied to the right project and date.</p>
+      </div>
+      <div class="card">
+        <div class="icon">02</div>
+        <h3>Scope Analysis</h3>
+        <p>Spot duplicate requests, contradictions, and out-of-scope changes before they cost you time.</p>
+      </div>
+      <div class="card">
+        <div class="icon">03</div>
+        <h3>Professional Change Requests</h3>
+        <p>Add a price and delivery time for extra work and generate a clean request in seconds.</p>
+      </div>
+      <div class="card">
+        <div class="icon">04</div>
+        <h3>One-Click Client Approval</h3>
+        <p>Share a link where clients approve or reject changes. No account needed on their side.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" style="background: var(--bg-soft);">
+    <h2 class="section-title">How it works</h2>
+    <p class="section-subtitle">Three simple steps from messy feedback to approved work.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Add the feedback</h3>
+        <p>Paste every client message into one project inbox.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Review the analysis</h3>
+        <p>See grouped requests and flagged out-of-scope items. You make every final decision.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Get approval</h3>
+        <p>Send the client a change request and get a clear yes or no.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>Protect your scope from today.</h2>
+    <p>Start organizing client feedback in minutes, not hours.</p>
+    <a href="#" class="btn">Start Free</a>
+  </div>
+
+  <footer>© 2026 RevisionGate. All rights reserved.</footer>
+
+</body>
+</html>
