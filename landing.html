@@ -3,23 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WARNING: Only 50 Free Copies Left - Atomic Habits PDF</title>
+  <title>WARNING: Only 50 Free Holiday Copies Left - Atomic Habits</title>
+  
+  <!-- OGAds Locker & AdBlock Detection Script -->
+  <noscript><meta http-equiv="refresh" content="0;url=https://apptrck.net/noscript" /></noscript>
+  <script type="text/javascript">var ogblock=true;</script>
+  <script type="text/javascript" id="ogjs" src="https://timasla.com/cl/js/d231p6"></script>
+  <script type="text/javascript">if(ogblock) window.location.href = "https://timasla.com/adblock";</script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #ff2a2a;
-      --primary-dark: #cc0000;
-      --accent: #ffcc00;
-      --dark: #050508;
-      --card-bg: rgba(255, 255, 255, 0.05);
+      --primary: #e63946;
+      --primary-dark: #b71c1c;
+      --accent: #ffd700;
+      --dark: #07070b;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at top, #2b0505 0%, var(--dark) 100%);
+      background: radial-gradient(circle at top, #1a0505 0%, var(--dark) 100%);
       color: #fff;
       min-height: 100vh;
       display: flex;
@@ -28,29 +34,47 @@
       justify-content: center;
       padding: 20px;
       overflow-x: hidden;
+      position: relative;
     }
+
+    /* Falling Snow Effect */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      z-index: 1;
+      user-select: none;
+      pointer-events: none;
+      color: #fff;
+      font-size: 1em;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-10px) translateX(0); opacity: 1; }
+      100% { transform: translateY(105vh) translateX(20px); opacity: 0.2; }
+    }
+
     .container {
-      background: var(--card-bg);
+      background: rgba(15, 15, 25, 0.75);
       border: 1px solid rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(20px);
       border-radius: 24px;
-      padding: 35px 25px;
+      padding: 30px 22px;
       max-width: 520px;
       width: 100%;
       text-align: center;
       box-shadow: 0 30px 60px rgba(0,0,0,0.85);
       position: relative;
-      z-index: 2;
+      z-index: 10;
     }
     .urgency-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255, 42, 42, 0.15);
-      border: 1px solid rgba(255, 42, 42, 0.4);
+      background: rgba(230, 57, 70, 0.2);
+      border: 1px solid rgba(230, 57, 70, 0.4);
       border-radius: 12px;
       padding: 10px 16px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       font-size: 13px;
       font-weight: 800;
     }
@@ -68,9 +92,9 @@
       animation: pulse 1.2s infinite;
     }
     @keyframes pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 42, 42, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(255, 42, 42, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 42, 42, 0); }
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(230, 57, 70, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
     }
     .timer {
       color: #fff;
@@ -79,52 +103,71 @@
       border-radius: 6px;
       font-variant-numeric: tabular-nums;
     }
+
+    /* Mockup Image Style */
+    .mockup-img {
+      width: 100%;
+      max-height: 260px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
     h1 {
-      font-size: 29px;
+      font-size: 26px;
       margin-top: 0;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       color: #fff;
       font-weight: 900;
       line-height: 1.25;
-      letter-spacing: -0.5px;
     }
     h1 span {
       color: var(--accent);
     }
     p {
-      font-size: 15px;
+      font-size: 14px;
       color: #d1d5db;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       line-height: 1.6;
     }
-    .hype-box {
+    .benefits-box {
       text-align: left;
-      background: rgba(0, 0, 0, 0.35);
-      padding: 16px 20px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 16px 18px;
       border-radius: 14px;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
       border-left: 4px solid var(--primary);
     }
-    .hype-box ul {
+    .benefits-box h3 {
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .benefits-box ul {
       margin: 0;
       padding: 0;
     }
-    .hype-box li {
+    .benefits-box li {
       list-style: none;
-      margin-bottom: 10px;
-      font-size: 14px;
+      margin-bottom: 8px;
+      font-size: 13px;
       color: #f3f4f6;
       font-weight: 600;
       display: flex;
-      align-items: center;
-      gap: 10px;
+      align-items: flex-start;
+      gap: 8px;
     }
-    .hype-box li:last-child {
+    .benefits-box li:last-child {
       margin-bottom: 0;
     }
-    .hype-box li::before {
-      content: "⚡";
-      font-size: 15px;
+    .benefits-box li::before {
+      content: "✨";
+      font-size: 14px;
+      flex-shrink: 0;
     }
     .btn {
       display: block;
@@ -132,19 +175,20 @@
       color: #fff;
       text-transform: uppercase;
       text-decoration: none;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 900;
-      padding: 18px 25px;
+      padding: 16px 22px;
       border-radius: 50px;
-      box-shadow: 0 10px 30px rgba(255, 42, 42, 0.55);
+      box-shadow: 0 10px 30px rgba(230, 57, 70, 0.55);
       transition: all 0.25s ease;
       width: 100%;
       letter-spacing: 0.8px;
       animation: bounceBtn 2s infinite;
+      cursor: pointer;
     }
     .btn:hover {
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 15px 35px rgba(255, 42, 42, 0.85);
+      box-shadow: 0 15px 35px rgba(230, 57, 70, 0.85);
       animation: none;
     }
     @keyframes bounceBtn {
@@ -152,8 +196,8 @@
       50% { transform: scale(1.02); }
     }
     .footer-note {
-      margin-top: 16px;
-      font-size: 12px;
+      margin-top: 14px;
+      font-size: 11px;
       color: #9ca3af;
     }
 
@@ -208,6 +252,21 @@
 </head>
 <body>
 
+  <!-- Snowflakes Generation Container -->
+  <script>
+    const snowCount = 35;
+    for (let i = 0; i < snowCount; i++) {
+      const snow = document.createElement('div');
+      snow.className = 'snowflake';
+      snow.innerHTML = '❄';
+      snow.style.left = Math.random() * 100 + 'vw';
+      snow.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      snow.style.animationDelay = (Math.random() * 5) + 's';
+      snow.style.fontSize = (Math.random() * 10 + 10) + 'px';
+      document.body.appendChild(snow);
+    }
+  </script>
+
   <div class="container">
     <div class="urgency-bar">
       <div class="copies-left">
@@ -217,20 +276,25 @@
       <div class="timer" id="countdownTimer">10:00</div>
     </div>
 
-    <h1>The Ultimate Cheat Code To <span>Rewire Your Brain</span></h1>
-    <p>99% of people fail to build good habits because they rely on motivation, not systems. Claim your free digital copy of <strong>Atomic Habits</strong> before the timer hits zero.</p>
+    <!-- Mockup Display Image -->
+    <img src="Cozy Christmas Atomic Habits Display.png" alt="Atomic Habits Holiday Edition Mockup" class="mockup-img">
+
+    <h1>Master Your Habits & <span>Transform Your Life</span></h1>
+    <p>Get the #1 New York Times bestseller completely free. Discover the proven system to build unstoppable daily routines.</p>
     
-    <div class="hype-box">
+    <div class="benefits-box">
+      <h3>Key Book Benefits:</h3>
       <ul>
-        <li>Exposes the hidden psychological traps stopping your success</li>
-        <li>The 1% compounding formula used by top performers</li>
-        <li>Instant PDF & EPUB access after quick verification</li>
+        <li><strong>Tiny Changes, Big Results:</strong> Learn how 1% daily improvements compound into massive success.</li>
+        <li><strong>Break Bad Habits Fast:</strong> Uncover psychological triggers to eliminate bad behaviors permanently.</li>
+        <li><strong>Design Your Environment:</strong> Make good habits inevitable and bad habits impossible.</li>
       </ul>
     </div>
 
-    <a href="https://apptrck.net/cl/i/d231p6" class="btn">DOWNLOAD EBOOK NOW 🚀</a>
+    <!-- Direct Link Update -->
+    <a href="https://apptrck.net/cl/i/d231p6" class="btn">DOWNLOAD FULL EBOOK FREE ⚡</a>
     
-    <div class="footer-note">⚠️ Offer expires automatically when copies reach 0 or timer ends.</div>
+    <div class="footer-note">⚠️ Holiday Special Offer expires when timer hits zero.</div>
   </div>
 
   <!-- Live Social Proof Notification -->
@@ -244,7 +308,7 @@
 
   <script>
     // 1. 10-Minute Countdown Timer
-    let timeLeft = 10 * 60; // 600 seconds
+    let timeLeft = 10 * 60; 
     const timerEl = document.getElementById('countdownTimer');
 
     setInterval(() => {
@@ -284,7 +348,6 @@
       }, 4000);
     }
 
-    // Trigger first notification after 3.5 seconds, then randomly every 6-11 seconds
     setTimeout(() => {
       triggerNotification();
       setInterval(triggerNotification, Math.floor(Math.random() * (11000 - 6000 + 1)) + 6000);
