@@ -1,1 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WARNING: Only 50 Free Copies Left - Atomic Habits PDF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff2a2a;
+      --primary-dark: #cc0000;
+      --accent: #ffcc00;
+      --dark: #050508;
+      --card-bg: rgba(255, 255, 255, 0.05);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at top, #2b0505 0%, var(--dark) 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    .container {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 35px 25px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.85);
+      position: relative;
+      z-index: 2;
+    }
+    .urgency-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 42, 42, 0.15);
+      border: 1px solid rgba(255, 42, 42, 0.4);
+      border-radius: 12px;
+      padding: 10px 16px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .copies-left {
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      animation: pulse 1.2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 42, 42, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(255, 42, 42, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 42, 42, 0); }
+    }
+    .timer {
+      color: #fff;
+      background: var(--primary);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+    h1 {
+      font-size: 29px;
+      margin-top: 0;
+      margin-bottom: 14px;
+      color: #fff;
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+    }
+    h1 span {
+      color: var(--accent);
+    }
+    p {
+      font-size: 15px;
+      color: #d1d5db;
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+    .hype-box {
+      text-align: left;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 16px 20px;
+      border-radius: 14px;
+      margin-bottom: 25px;
+      border-left: 4px solid var(--primary);
+    }
+    .hype-box ul {
+      margin: 0;
+      padding: 0;
+    }
+    .hype-box li {
+      list-style: none;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #f3f4f6;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hype-box li:last-child {
+      margin-bottom: 0;
+    }
+    .hype-box li::before {
+      content: "⚡";
+      font-size: 15px;
+    }
+    .btn {
+      display: block;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #fff;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 900;
+      padding: 18px 25px;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(255, 42, 42, 0.55);
+      transition: all 0.25s ease;
+      width: 100%;
+      letter-spacing: 0.8px;
+      animation: bounceBtn 2s infinite;
+    }
+    .btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(255, 42, 42, 0.85);
+      animation: none;
+    }
+    @keyframes bounceBtn {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .footer-note {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
 
+    /* Live Notification Toast */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(18, 18, 24, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-left: 4px solid #10b981;
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      z-index: 9999;
+      transform: translateY(150%);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      max-width: 320px;
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .toast-icon {
+      background: rgba(16, 185, 129, 0.2);
+      color: #10b981;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .toast-content strong {
+      display: block;
+      color: #fff;
+      font-weight: 800;
+    }
+    .toast-content span {
+      color: #9ca3af;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="urgency-bar">
+      <div class="copies-left">
+        <div class="pulse-dot"></div>
+        <span>ONLY <span id="copiesCount">50</span> COPIES LEFT!</span>
+      </div>
+      <div class="timer" id="countdownTimer">10:00</div>
+    </div>
+
+    <h1>The Ultimate Cheat Code To <span>Rewire Your Brain</span></h1>
+    <p>99% of people fail to build good habits because they rely on motivation, not systems. Claim your free digital copy of <strong>Atomic Habits</strong> before the timer hits zero.</p>
+    
+    <div class="hype-box">
+      <ul>
+        <li>Exposes the hidden psychological traps stopping your success</li>
+        <li>The 1% compounding formula used by top performers</li>
+        <li>Instant PDF & EPUB access after quick verification</li>
+      </ul>
+    </div>
+
+    <a href="https://apptrck.net/cl/i/d231p6" class="btn">DOWNLOAD EBOOK NOW 🚀</a>
+    
+    <div class="footer-note">⚠️ Offer expires automatically when copies reach 0 or timer ends.</div>
+  </div>
+
+  <!-- Live Social Proof Notification -->
+  <div class="toast" id="liveToast">
+    <div class="toast-icon">✓</div>
+    <div class="toast-content">
+      <strong id="toastName">Liam M. (USA)</strong>
+      <span>Just unlocked Atomic Habits eBook • <small id="toastTime">Just now</small></span>
+    </div>
+  </div>
+
+  <script>
+    // 1. 10-Minute Countdown Timer
+    let timeLeft = 10 * 60; // 600 seconds
+    const timerEl = document.getElementById('countdownTimer');
+
+    setInterval(() => {
+      if (timeLeft <= 0) return;
+      timeLeft--;
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }, 1000);
+
+    // 2. Decreasing Copies Counter & Live Toast Notifications
+    let copies = 50;
+    const copiesEl = document.getElementById('copiesCount');
+    const toastEl = document.getElementById('liveToast');
+    const toastNameEl = document.getElementById('toastName');
+    const toastTimeEl = document.getElementById('toastTime');
+
+    const buyers = [
+      "Liam M. (USA)", "Emma W. (UK)", "Noah K. (Canada)", 
+      "Olivia R. (Australia)", "Mason T. (USA)", "Sophia B. (UK)", 
+      "Lucas D. (Germany)", "Ava C. (USA)", "Ethan H. (Canada)"
+    ];
+
+    function triggerNotification() {
+      if (copies > 4) {
+        copies--;
+        copiesEl.textContent = copies;
+      }
+
+      const randomBuyer = buyers[Math.floor(Math.random() * buyers.length)];
+      toastNameEl.textContent = randomBuyer;
+      toastTimeEl.textContent = "Just now";
+      
+      toastEl.classList.add('show');
+      setTimeout(() => {
+        toastEl.classList.remove('show');
+      }, 4000);
+    }
+
+    // Trigger first notification after 3.5 seconds, then randomly every 6-11 seconds
+    setTimeout(() => {
+      triggerNotification();
+      setInterval(triggerNotification, Math.floor(Math.random() * (11000 - 6000 + 1)) + 6000);
+    }, 3500);
+  </script>
+
+</body>
+</html>
