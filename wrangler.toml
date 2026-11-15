@@ -1,7 +1,8 @@
-name = "grinch-giveaway"
+name = "atomic-habits"
 main = "worker.js"
 compatibility_date = "2024-11-01"
 
-[assets]
-directory = "./public"
-binding = "ASSETS"
+routes = [
+  { pattern = "timasla.com/atomichabits", zone_name = "timasla.com" },
+  { pattern = "timasla.com/atomic-page", zone_name = "timasla.com" }
+]
