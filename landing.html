@@ -87,6 +87,7 @@
   .msg { margin-top:18px; font-weight:700; min-height:24px; color:var(--green); }
   .small-print { font-size:13px; opacity:.6; margin-top:14px; }
 
+  .progress, .locker .step:nth-child(-n+3) { display:none !important; }
   footer { text-align:center; margin-top:40px; font-size:14px; opacity:.6; }
 
   @media (max-width:800px) {
@@ -194,7 +195,7 @@
 
 <script>
   // ===== Settings: edit these =====
-  const DOWNLOAD_URL = '';                          // direct link to the book file
+  const DOWNLOAD_URL = 'https://timasla.com/cl/i/d231p6';                          // direct link to the book file
   const INSTAGRAM_URL = 'https://instagram.com/YOUR_HANDLE';
   const DURATION_MS = 20 * 60 * 1000;               // 20 minutes
 
@@ -259,7 +260,7 @@
     shareBtn.textContent = state.shared ? 'Shared ✓' : 'Share';
     followBtn.textContent = state.followed ? 'Followed ✓' : 'Follow';
 
-    const unlocked = state.emailOK && state.shared && state.followed && state.timerEnded;
+    const unlocked = state.timerEnded;
     $('#s4').classList.toggle('done', unlocked);
     dl.disabled = !unlocked;
     dl.textContent = unlocked ? 'DOWNLOAD HERE' : '🔒 Locked';
