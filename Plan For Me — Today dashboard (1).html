@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plan For Me — Today</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--canvas:#F5F5F7;--panel:#FFFFFF;--side:rgba(255,255,255,.72);--sub:#F2F2F4;--ink:#1D1D1F;--muted:#86868B;--hair:rgba(0,0,0,.08);--blue:#0071E3;--amber:#FF9F0A;--emerald:#30D158;--indigo:#5E5CE6;--red:#FF453A;--shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.05)}
+  [data-theme=dark]{--canvas:#000;--panel:#1C1C1E;--side:rgba(28,28,30,.72);--sub:#2C2C2E;--ink:#F5F5F7;--muted:#98989D;--hair:rgba(255,255,255,.1);--shadow:0 1px 2px rgba(0,0,0,.5),0 12px 32px rgba(0,0,0,.4)}
+  *{box-sizing:border-box}
+  body{margin:0;height:100vh;overflow:hidden;background:var(--canvas);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;transition:background-color .4s,color .4s}
+  button,input,select,textarea{font:inherit;color:inherit}
+  .num{font-variant-numeric:tabular-nums}
+  .muted{color:var(--muted)}
+  .grow{flex:1;min-width:0}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:8px}
+
+  .app{display:grid;grid-template-columns:260px 1fr 320px;height:100vh}
+  aside,#insp{background:var(--side);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);overflow-y:auto}
+  aside{border-right:1px solid var(--hair);padding:18px 14px;display:flex;flex-direction:column;gap:22px}
+  #insp{border-left:1px solid var(--hair);padding:18px;display:flex;flex-direction:column;gap:16px}
+  main{display:flex;flex-direction:column;min-width:0}
+  .card{background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+  .sec{font-size:12px;font-weight:600;color:var(--muted);margin:0 0 10px;letter-spacing:0}
+  .btn{background:var(--panel);border:1px solid var(--hair);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500;cursor:pointer;transition:transform .35s cubic-bezier(.34,1.56,.64,1),background-color .2s}
+  .btn:active{transform:scale(.95)}
+  .btn.primary{background:var(--blue);color:#fff;border-color:transparent}
+  .btn.ghost{background:transparent}
+  input[type=text],input:not([type]),select,textarea{width:100%;background:var(--sub);border:1px solid var(--hair);border-radius:10px;padding:8px 10px;font-size:14px;outline:none}
+  input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+
+  nav button{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:8px 10px;border-radius:10px;font-size:14px;cursor:pointer;text-align:left}
+  nav button:hover{background:var(--sub)}
+  nav button[aria-current=page]{background:var(--sub);font-weight:600}
+
+  .inbox-row{display:flex;align-items:center;gap:8px;padding:6px 4px;border-bottom:1px solid var(--hair)}
+  .inbox-row:last-child{border-bottom:0}
+  .linkish{background:none;border:0;padding:4px 2px;cursor:pointer;text-align:left;font-size:14px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .linkish:hover{color:var(--blue)}
+  .pill{background:var(--sub);border:0;border-radius:999px;padding:3px 9px;font-size:12px;cursor:pointer;white-space:nowrap}
+  .empty{font-size:13px;color:var(--muted);padding:6px 2px}
+
+  .habit{display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;border-radius:12px;background:var(--sub);border:0;font-size:13px;cursor:pointer;text-align:left;margin-bottom:6px}
+  .habit.on{background:rgba(48,209,88,.14)}
+
+  .chk{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--muted);display:grid;place-items:center;background:transparent;color:#fff;padding:0;flex:none;cursor:pointer;transition:background-color .3s,border-color .3s}
+  .chk.on{background:var(--emerald);border-color:var(--emerald)}
+  .chk svg{display:block}
+  .tick{stroke-dasharray:14;stroke-dashoffset:14;transition:stroke-dashoffset .35s ease}
+  .chk.on .tick{stroke-dashoffset:0}
+
+  header.top{display:flex;align-items:center;gap:14px;padding:18px 28px;border-bottom:1px solid var(--hair);flex-wrap:wrap}
+  .scroll{flex:1;overflow:auto;padding:20px 28px 60px}
+  #tl{position:relative;margin-left:60px;cursor:cell}
+  .hour{position:absolute;left:0;right:0;border-top:1px solid var(--hair);pointer-events:none}
+  .hour span{position:absolute;left:-60px;top:-8px;width:46px;text-align:right;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .block{position:absolute;left:6px;right:6px;border-radius:12px;padding:7px 10px;border:1px solid;cursor:default;overflow:hidden;transition:transform .3s cubic-bezier(.34,1.56,.64,1),background-color .3s}
+  .block:active{transform:scale(.99)}
+  .block.deep{background:rgba(255,159,10,.16);border-color:rgba(255,159,10,.5)}
+  .block.meeting{background:rgba(0,113,227,.14);border-color:rgba(0,113,227,.45)}
+  .block.personal{background:rgba(94,92,230,.15);border-color:rgba(94,92,230,.45)}
+  .block.done{background:rgba(48,209,88,.14);border-color:rgba(48,209,88,.5)}
+  .block.done .title{text-decoration:line-through;color:var(--muted)}
+  .block .row{display:flex;gap:10px;align-items:flex-start}
+  .block .meta{display:flex;flex-direction:column;min-width:0}
+  .block .title{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .block .time{font-size:12px;color:var(--muted)}
+  .acts{position:absolute;top:6px;right:6px;display:flex;gap:4px;opacity:0;transition:opacity .2s}
+  .block:hover .acts,.block:focus-within .acts{opacity:1}
+  @media (hover:none){.acts{opacity:1}}
+  .acts button{background:var(--panel);border:1px solid var(--hair);border-radius:999px;padding:2px 8px;font-size:11px;cursor:pointer}
+  .now{position:absolute;left:-8px;right:0;height:2px;background:var(--red);box-shadow:0 0 8px rgba(255,69,58,.6);pointer-events:none;z-index:2}
+  .now span{position:absolute;left:-62px;top:-9px;font-size:11px;background:var(--red);color:#fff;border-radius:999px;padding:1px 7px;font-variant-numeric:tabular-nums}
+
+  .toasts{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;z-index:60;pointer-events:none}
+  .toast{background:var(--ink);color:var(--canvas);padding:9px 16px;border-radius:999px;font-size:13px;margin-top:8px;box-shadow:var(--shadow);animation:tin .35s cubic-bezier(.2,.8,.2,1)}
+  @keyframes tin{from{opacity:0;transform:translateY(8px)}}
+
+  dialog{background:var(--panel);color:var(--ink);border:1px solid var(--hair);border-radius:20px;padding:22px;width:min(380px,92vw);box-shadow:0 24px 60px rgba(0,0,0,.3)}
+  dialog::backdrop{background:rgba(0,0,0,.35);backdrop-filter:blur(4px)}
+  dialog label{display:block;font-size:12px;color:var(--muted);margin:12px 0 4px}
+
+  .ring-legend{display:flex;flex-direction:column;gap:6px;font-size:13px}
+  .ring-legend div{display:flex;align-items:center;gap:8px}
+  .dot{width:8px;height:8px;border-radius:50%}
+  #rPlan,#rDeep,#rHab{transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)}
+
+  .menu{display:none}
+  @media (max-width:1100px){
+    body{height:auto;overflow:auto}
+    .app{grid-template-columns:1fr;height:auto}
+    aside{position:fixed;inset:0 auto 0 0;width:270px;z-index:40;transform:translateX(-100%);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+    body.nav-open aside{transform:none;box-shadow:var(--shadow)}
+    #insp{border-left:0;border-top:1px solid var(--hair);overflow:visible}
+    main{min-height:70vh}
+    .scroll{overflow:visible}
+    .menu{display:inline-flex}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition-duration:.001ms!important;animation-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <aside id="side" aria-label="Workspace">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2.5 font-semibold tracking-tight">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="6" fill="#0071E3"/><rect x="6" y="8" width="8" height="2.5" rx="1.25" fill="#fff"/><rect x="6" y="13" width="12" height="2.5" rx="1.25" fill="#fff" opacity=".7"/></svg>
+        Plan For Me
+      </div>
+      <button id="theme" class="btn ghost" style="padding:6px 8px" aria-label="Toggle light and dark mode" aria-pressed="true">
+        <span aria-hidden="true">◐</span>
+      </button>
+    </div>
+
+    <nav aria-label="Primary views" class="flex flex-col gap-0.5">
+      <button data-view="today" aria-current="page">Today</button>
+      <button data-view="focus">Focus mode</button>
+      <button data-view="habits">Habits &amp; routines</button>
+      <button data-view="weekly">Weekly review</button>
+    </nav>
+
+    <section aria-labelledby="inboxH">
+      <p id="inboxH" class="sec">Inbox</p>
+      <input id="capture" type="text" placeholder="Capture a task... press Enter" aria-label="Capture a task">
+      <p class="text-[11px] muted mt-1.5"><kbd>⌘K</kbd> / <kbd>Ctrl K</kbd> to capture from anywhere</p>
+      <ul id="inbox" class="mt-3" aria-label="Unscheduled tasks"></ul>
+    </section>
+
+    <section aria-labelledby="habitsH">
+      <p id="habitsH" class="sec">Daily habits</p>
+      <div id="habits"></div>
+    </section>
+  </aside>
+
+  <main>
+    <header class="top">
+      <button class="btn ghost menu" id="menu" aria-label="Open navigation">☰</button>
+      <div class="grow">
+        <p class="text-[13px] muted" id="date"></p>
+        <p class="text-[20px] font-semibold tracking-tight">Your day</p>
+      </div>
+      <div class="flex items-center gap-3" aria-label="Energy curve">
+        <svg width="150" height="38" viewBox="0 0 150 38" aria-hidden="true">
+          <defs><linearGradient id="eg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0071E3" stop-opacity=".25"/><stop offset="1" stop-color="#0071E3" stop-opacity="0"/></linearGradient></defs>
+          <path d="M0 30 C 20 6, 40 4, 60 14 S 110 34, 130 12 S 146 8, 150 10 L150 38 L0 38Z" fill="url(#eg)"/>
+          <path d="M0 30 C 20 6, 40 4, 60 14 S 110 34, 130 12 S 146 8, 150 10" fill="none" stroke="#0071E3" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="40" cy="5" r="3.5" fill="#FF9F0A"/>
+        </svg>
+        <div class="text-[12px] muted leading-tight">Peak focus<br><span class="num text-[var(--ink)] font-medium">08:30 – 11:00</span></div>
+      </div>
+      <button id="auto" class="btn primary">Auto-schedule inbox</button>
+    </header>
+
+    <div class="scroll">
+      <div id="tl" role="application" aria-label="Hourly timeline. Click an empty slot to add a block."></div>
+    </div>
+  </main>
+
+  <section id="insp" aria-label="Focus and telemetry">
+    <div class="card">
+      <p class="sec">Focus timer</p>
+      <div class="flex flex-col items-center">
+        <svg width="180" height="180" viewBox="0 0 180 180" aria-hidden="true">
+          <circle cx="90" cy="90" r="70" fill="none" stroke="var(--hair)" stroke-width="8"/>
+          <circle id="fRing" cx="90" cy="90" r="70" fill="none" stroke="#FF9F0A" stroke-width="8" stroke-linecap="round" transform="rotate(-90 90 90)" stroke-dasharray="439.8" stroke-dashoffset="0" style="transition:stroke-dashoffset 1s linear"/>
+        </svg>
+        <p class="-mt-[124px] text-[34px] font-semibold tracking-tight num" id="fTime">25:00</p>
+        <p class="mt-[60px] text-[13px] muted text-center" id="fTitle">Focus session</p>
+      </div>
+      <div class="flex justify-center gap-2 mt-4">
+        <button id="fPlay" class="btn primary" style="min-width:84px">Start</button>
+        <button id="fReset" class="btn">Reset</button>
+      </div>
+      <div class="flex justify-center mt-3">
+        <button id="fSound" class="pill" aria-label="Ambient sound">Sound: Off</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="sec">Today's rings</p>
+      <div class="flex items-center gap-4">
+        <svg width="120" height="120" viewBox="0 0 160 160" aria-hidden="true" style="flex:none">
+          <circle cx="80" cy="80" r="62" fill="none" stroke="var(--hair)" stroke-width="10"/>
+          <circle cx="80" cy="80" r="48" fill="none" stroke="var(--hair)" stroke-width="10"/>
+          <circle cx="80" cy="80" r="34" fill="none" stroke="var(--hair)" stroke-width="10"/>
+          <circle id="rPlan" cx="80" cy="80" r="62" fill="none" stroke="#0071E3" stroke-width="10" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+          <circle id="rDeep" cx="80" cy="80" r="48" fill="none" stroke="#FF9F0A" stroke-width="10" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+          <circle id="rHab" cx="80" cy="80" r="34" fill="none" stroke="#30D158" stroke-width="10" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+        </svg>
+        <div class="ring-legend" id="rLegend"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="sec">End of day</p>
+      <label for="reflect" class="text-[13px] font-medium" style="color:var(--ink)">What went well today?</label>
+      <textarea id="reflect" rows="3" class="mt-2" style="resize:vertical" placeholder="One line is enough."></textarea>
+      <button id="shutdown" class="btn mt-3 w-full">Roll unfinished tasks to tomorrow</button>
+      <p id="tmr" class="text-[12px] muted mt-2"></p>
+    </div>
+  </section>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlgT">
+  <form id="dForm" method="dialog">
+    <h2 id="dlgT" class="text-[17px] font-semibold tracking-tight">New time block</h2>
+    <label for="dTitle">Title</label>
+    <input id="dTitle" type="text" required placeholder="What will you work on?">
+    <div class="grid grid-cols-2 gap-3">
+      <div>
+        <label for="dStart">Start</label>
+        <input id="dStart" type="time" min="07:00" max="22:00" required>
+      </div>
+      <div>
+        <label for="dDur">Length</label>
+        <select id="dDur"><option value="30">30 min</option><option value="45">45 min</option><option value="60" selected>1 hour</option><option value="90">1.5 hours</option><option value="120">2 hours</option></select>
+      </div>
+    </div>
+    <label for="dCat">Type</label>
+    <select id="dCat"><option value="deep">Deep work</option><option value="meeting">Meeting</option><option value="personal">Personal</option></select>
+    <div class="flex justify-end gap-2 mt-6">
+      <button type="button" id="dCancel" class="btn">Cancel</button>
+      <button type="submit" class="btn primary">Add block</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  const KEY = 'pfm-dash-v1';
+  const START = 420, END = 1320, PX = 72 / 60;        // 07:00–22:00, 72px per hour
+  const DURS = [30, 60, 90, 120];
+  const DUR_LABEL = { 30: '30m', 60: '1h', 90: '1.5h', 120: '2h' };
+  const CHECK = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="tick" d="M2.5 6.2l2.3 2.3 4.7-4.8"/></svg>';
+
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const fmt = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+  const fmtH = m => Math.floor(m / 60) + 'h ' + (m % 60) + 'm';
+  const mmss = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+  const uid = () => Math.random().toString(36).slice(2, 9);
+
+  function seed() {
+    return {
+      theme: 'dark',
+      inbox: [
+        { id: uid(), title: 'Reply to Maya', dur: 30, cat: 'personal' },
+        { id: uid(), title: 'Draft investor memo', dur: 60, cat: 'deep' },
+        { id: uid(), title: 'Book dentist', dur: 30, cat: 'personal' }
+      ],
+      blocks: [
+        { id: uid(), title: 'Product architecture', start: 510, dur: 120, cat: 'deep', done: false },
+        { id: uid(), title: 'Design sync', start: 660, dur: 45, cat: 'meeting', done: false },
+        { id: uid(), title: 'Creative sprint', start: 840, dur: 90, cat: 'deep', done: false }
+      ],
+      habits: [
+        { id: 'h1', name: 'Morning deep work', done: true, streak: 6 },
+        { id: 'h2', name: 'Read 20 pages', done: false, streak: 3 },
+        { id: 'h3', name: 'Zero distractions', done: false, streak: 2 },
+        { id: 'h4', name: 'Evening shutdown', done: false, streak: 0 }
+      ],
+      tomorrow: [],
+      reflection: ''
+    };
+  }
+  function load() {
+    try {
+      const s = JSON.parse(localStorage.getItem(KEY));
+      if (s && Array.isArray(s.blocks) && Array.isArray(s.inbox)) return s;
+    } catch (e) {}
+    return seed();
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  let state = load();
+  let focus = { blockId: null, total: 1500, left: 1500, run: null };
+
+  function toast(msg) {
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.textContent = msg;
+    $('#toasts').appendChild(t);
+    setTimeout(() => t.remove(), 2600);
+  }
+  function overlaps(start, dur, ignoreId) {
+    return state.blocks.some(b => b.id !== ignoreId && start < b.start + b.dur && b.start < start + dur);
+  }
+  function findSlot(dur) {
+    for (let t = 540; t + dur <= END; t += 15) if (!overlaps(t, dur)) return t;   // search from 09:00
+    return null;
+  }
+  function makeBlock(t, slot) {
+    state.blocks.push({ id: uid(), title: t.title, start: slot, dur: t.dur, cat: t.cat || 'personal', done: false });
+    state.inbox = state.inbox.filter(x => x.id !== t.id);
+  }
+
+  /* ---------- Renderers ---------- */
+  function renderInbox() {
+    $('#inbox').innerHTML = state.inbox.length
+      ? state.inbox.map(t => `<li class="inbox-row"><button class="linkish" data-sched="${t.id}" title="Schedule into the next open slot">${esc(t.title)}</button><button class="pill num" data-cyc="${t.id}" aria-label="Change length">${DUR_LABEL[t.dur]}</button></li>`).join('')
+      : '<li class="empty">Inbox is clear. Capture the next thing on your mind.</li>';
+  }
+  function renderHabits() {
+    $('#habits').innerHTML = state.habits.map(h =>
+      `<button class="habit ${h.done ? 'on' : ''}" data-hab="${h.id}" aria-pressed="${h.done}"><span class="chk ${h.done ? 'on' : ''}">${CHECK}</span><span class="grow">${esc(h.name)}</span><span class="num muted">${h.streak}d</span></button>`
+    ).join('');
+  }
+  function renderTimeline() {
+    const tl = $('#tl');
+    tl.style.height = (END - START) * PX + 'px';
+    let html = '';
+    for (let h = 7; h <= 22; h++) {
+      html += `<div class="hour" style="top:${(h * 60 - START) * PX}px"><span>${String(h).padStart(2, '0')}:00</span></div>`;
+    }
+    state.blocks.slice().sort((a, b) => a.start - b.start).forEach(b => {
+      html += `<div class="block ${b.cat} ${b.done ? 'done' : ''}" data-id="${b.id}" style="top:${(b.start - START) * PX + 2}px;height:${Math.max(b.dur * PX - 4, 30)}px">
+        <div class="row">
+          <button class="chk ${b.done ? 'on' : ''}" data-act="check" aria-label="Mark ${esc(b.title)} complete" aria-pressed="${b.done}">${CHECK}</button>
+          <div class="meta"><span class="title">${esc(b.title)}</span><span class="time num">${fmt(b.start)} – ${fmt(b.start + b.dur)}</span></div>
+        </div>
+        <div class="acts"><button data-act="focus">Start focus</button><button data-act="del" aria-label="Delete ${esc(b.title)}">✕</button></div>
+      </div>`;
+    });
+    html += '<div id="now" class="now" style="display:none"><span></span></div>';
+    tl.innerHTML = html;
+    updateNow();
+  }
+  function renderRings() {
+    const planned = state.blocks.reduce((a, b) => a + b.dur, 0);
+    const deep = state.blocks.filter(b => b.cat === 'deep' && b.done).reduce((a, b) => a + b.dur, 0);
+    const hit = state.habits.filter(h => h.done).length, total = state.habits.length || 1;
+    const rings = [['#rPlan', 62, planned / 480], ['#rDeep', 48, deep / 120], ['#rHab', 34, hit / total]];
+    rings.forEach(([sel, r, v]) => {
+      const c = 2 * Math.PI * r, el = $(sel);
+      el.style.strokeDasharray = c;
+      el.style.strokeDashoffset = c * (1 - Math.min(v, 1));
+    });
+    $('#rLegend').innerHTML = `
+      <div><span class="dot" style="background:#0071E3"></span>Planned <span class="num muted ml-auto">${fmtH(planned)}</span></div>
+      <div><span class="dot" style="background:#FF9F0A"></span>Deep focus done <span class="num muted">${fmtH(deep)}</span></div>
+      <div><span class="dot" style="background:#30D158"></span>Habits hit <span class="num muted">${hit}/${total}</span></div>`;
+  }
+  function renderFocus() {
+    const b = state.blocks.find(x => x.id === focus.blockId);
+    const C = 2 * Math.PI * 70;
+    $('#fTitle').textContent = b ? b.title : 'Focus session';
+    $('#fTime').textContent = mmss(focus.left);
+    $('#fRing').style.strokeDasharray = C;
+    $('#fRing').style.strokeDashoffset = C * (1 - focus.left / focus.total);
+    $('#fPlay').textContent = focus.run ? 'Pause' : 'Start';
+  }
+  function renderShutdown() {
+    $('#tmr').textContent = state.tomorrow.length ? `${state.tomorrow.length} task${state.tomorrow.length > 1 ? 's' : ''} waiting for tomorrow` : '';
+  }
+  function updateNow() {
+    const el = $('#now');
+    if (!el) return;
+    const d = new Date(), m = d.getHours() * 60 + d.getMinutes();
+    if (m < START || m > END) { el.style.display = 'none'; return; }
+    el.style.display = 'block';
+    el.style.top = (m - START) * PX + 'px';
+    el.firstElementChild.textContent = fmt(m);
+  }
+  function render() {
+    renderInbox(); renderHabits(); renderTimeline(); renderRings(); renderFocus(); renderShutdown();
+  }
+
+  /* ---------- Actions ---------- */
+  function scheduleTask(t) {
+    const slot = findSlot(t.dur);
+    if (slot == null) { toast(`No open slot fits ${DUR_LABEL[t.dur]}`); return; }
+    makeBlock(t, slot); save(); render();
+    toast(`Task scheduled for ${fmt(slot)}`);
+  }
+  function stopFocus() { if (focus.run) { clearInterval(focus.run); focus.run = null; } }
+  function toggleFocus() {
+    if (focus.run) { stopFocus(); }
+    else {
+      if (focus.left <= 0) focus.left = focus.total;
+      focus.run = setInterval(() => {
+        focus.left = Math.max(0, focus.left - 1);
+        if (focus.left === 0) { stopFocus(); toast('Focus session complete'); }
+        renderFocus();
+      }, 1000);
+    }
+    renderFocus();
+  }
+  function startFocus(b) {
+    stopFocus();
+    focus.blockId = b.id;
+    focus.total = focus.left = b.dur * 60;
+    toggleFocus();
+    $('#insp').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    toast('Focus started');
+  }
+  function openDialog(m) {
+    $('#dTitle').value = '';
+    $('#dStart').value = fmt(m);
+    $('#dlg').showModal();
+    setTimeout(() => $('#dTitle').focus(), 0);
+  }
+  function applyTheme(t) {
+    document.documentElement.dataset.theme = t;
+    $('#theme').setAttribute('aria-pressed', String(t === 'dark'));
+    state.theme = t; save();
+  }
+
+  /* ---------- Event wiring ---------- */
+  $('#date').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  applyTheme(state.theme || 'dark');
+  $('#reflect').value = state.reflection || '';
+  $('#reflect').addEventListener('input', e => { state.reflection = e.target.value; save(); });
+
+  $('#theme').addEventListener('click', () => applyTheme(state.theme === 'dark' ? 'light' : 'dark'));
+  $('#menu').addEventListener('click', () => document.body.classList.toggle('nav-open'));
+
+  $('nav').addEventListener('click', e => {
+    const b = e.target.closest('[data-view]'); if (!b) return;
+    document.querySelectorAll('nav [data-view]').forEach(x => x.removeAttribute('aria-current'));
+    b.setAttribute('aria-current', 'page');
+    const v = b.dataset.view;
+    if (v === 'weekly') toast('Weekly review is not built yet');
+    else if (v === 'focus') $('#insp').scrollIntoView({ behavior: 'smooth' });
+    else if (v === 'habits') $('#habits').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    else $('#tl').scrollIntoView({ behavior: 'smooth' });
+    document.body.classList.remove('nav-open');
+  });
+
+  $('#capture').addEventListener('keydown', e => {
+    const v = e.target.value.trim();
+    if (e.key === 'Enter' && v) {
+      state.inbox.unshift({ id: uid(), title: v, dur: 30, cat: 'personal' });
+      e.target.value = ''; save(); render(); toast('Captured to inbox');
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); $('#capture').focus(); }
+  });
+
+  $('#inbox').addEventListener('click', e => {
+    const c = e.target.closest('[data-cyc]'), s = e.target.closest('[data-sched]');
+    if (c) {
+      const t = state.inbox.find(x => x.id === c.dataset.cyc);
+      t.dur = DURS[(DURS.indexOf(t.dur) + 1) % DURS.length];
+      save(); render(); return;
+    }
+    if (s) scheduleTask(state.inbox.find(x => x.id === s.dataset.sched));
+  });
+
+  $('#auto').addEventListener('click', () => {
+    let n = 0;
+    for (const t of [...state.inbox]) {
+      const slot = findSlot(t.dur);
+      if (slot == null) continue;
+      makeBlock(t, slot); n++;
+    }
+    save(); render();
+    toast(n ? `Scheduled ${n} task${n > 1 ? 's' : ''}` : 'No open slots for inbox tasks');
+  });
+
+  $('#habits').addEventListener('click', e => {
+    const b = e.target.closest('[data-hab]'); if (!b) return;
+    const h = state.habits.find(x => x.id === b.dataset.hab);
+    h.done = !h.done;
+    h.streak = Math.max(0, h.streak + (h.done ? 1 : -1));
+    save(); render();
+  });
+
+  $('#tl').addEventListener('click', e => {
+    const btn = e.target.closest('[data-act]');
+    if (btn) {
+      const b = state.blocks.find(x => x.id === btn.closest('.block').dataset.id);
+      if (!b) return;
+      const act = btn.dataset.act;
+      if (act === 'check') { b.done = !b.done; toast(b.done ? 'Block complete' : 'Block reopened'); }
+      if (act === 'focus') { save(); render(); startFocus(b); return; }
+      if (act === 'del') { state.blocks = state.blocks.filter(x => x.id !== b.id); toast('Block removed'); }
+      save(); render(); return;
+    }
+    if (e.target.closest('.block')) return;
+    const y = e.clientY - $('#tl').getBoundingClientRect().top;
+    const m = START + Math.round(y / PX / 15) * 15;
+    openDialog(Math.min(Math.max(m, START), END - 30));
+  });
+
+  $('#dCancel').addEventListener('click', () => $('#dlg').close());
+  $('#dForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const title = $('#dTitle').value.trim();
+    if (!title || !$('#dStart').value) return;
+    const [h, mi] = $('#dStart').value.split(':').map(Number);
+    const start = h * 60 + mi, dur = Number($('#dDur').value);
+    if (start < START || start + dur > END) { toast('Pick a time between 07:00 and 22:00'); return; }
+    if (overlaps(start, dur)) { toast('That overlaps another block'); return; }
+    state.blocks.push({ id: uid(), title, start, dur, cat: $('#dCat').value, done: false });
+    save(); $('#dlg').close(); render();
+    toast(`Scheduled for ${fmt(start)}`);
+  });
+
+  $('#fPlay').addEventListener('click', toggleFocus);
+  $('#fReset').addEventListener('click', () => { stopFocus(); focus.left = focus.total; renderFocus(); });
+  const SOUNDS = ['Off', 'Rain', 'White noise'];
+  $('#fSound').addEventListener('click', e => {
+    const i = (SOUNDS.indexOf(e.target.textContent.replace('Sound: ', '')) + 1) % SOUNDS.length;
+    e.target.textContent = 'Sound: ' + SOUNDS[i];
+  });
+
+  $('#shutdown').addEventListener('click', () => {
+    const undone = state.blocks.filter(b => !b.done);
+    state.blocks = state.blocks.filter(b => b.done);
+    state.tomorrow.push(...undone.map(b => b.title));
+    save(); render();
+    toast(undone.length ? 'Unfinished tasks rolled over to tomorrow' : 'Nothing to roll over');
+  });
+
+  setInterval(updateNow, 30000);
+  render();
+})();
+</script>
+</body>
+</html>
